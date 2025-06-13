@@ -45,15 +45,4 @@
 
 ---
 
-## 🗂️ 폴더 구조
 
-```bash
-hipython_rep/
-├── basic_syntax/        # 파이썬 기초 문법 정리
-├── built_in_modules/    # 표준 내장 모듈 실습
-├── external_libraries/  # pandas, numpy 등 외부 라이브러리 학습
-├── data_analysis/       # 데이터 분석 실습 및 시각화 예제
-├── web_basic/           # HTML, CSS, JS 등 웹 기초 학습
-├── linux_basics/        # 리눅스 기초 명령어 및 실습 정리
-├── mini_projects/       # 실습 중심 미니 프로젝트
-└── README.md            # 학습 개요 및 소개 문서
