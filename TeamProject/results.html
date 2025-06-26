@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>추천 매물</title>
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #f0f2f5;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 40px;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h2 i {
+      margin-right: 15px;
+      color: #ffc107; /* Star color */
+    }
+
+    .list-container {
+      width: 100%;
+      max-width: 700px; /* Adjust max-width as needed */
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 30px; /* Space for the button below */
+    }
+
+    .section-title {
+      background-color: #ffffff;
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      font-size: 1.2em;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+      margin-bottom: 0; /* No margin-bottom here as it's part of the gap */
+    }
+
+    .property-item {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      position: relative; /* For the background image */
+      overflow: hidden; /* To contain the pseudo-element */
+    }
+
+    .property-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .property-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.2; /* Adjust opacity for subtle background */
+      z-index: 1;
+      border-radius: 12px;
+    }
+
+    .property-item:nth-child(2)::before { /* Property 1: Selected Region */
+      background-image: url('https://via.placeholder.com/700x200/FFDDC1/808080?text=Region+Focus');
+    }
+
+    .property-item:nth-child(3)::before { /* Property 2: Selected Budget */
+      background-image: url('https://via.placeholder.com/700x200/C1FFDD/808080?text=Budget+Focus');
+    }
+
+    .property-item:nth-child(4)::before { /* Property 3: Selected Area */
+      background-image: url('https://via.placeholder.com/700x200/DDC1FF/808080?text=Area+Focus');
+    }
+
+    .property-item:nth-child(5)::before { /* Property 4: Selected Room Count */
+      background-image: url('https://via.placeholder.com/700x200/B2EBF2/808080?text=Rooms+Focus');
+    }
+
+    .property-item-content {
+      position: relative;
+      z-index: 2; /* Ensure content is above the background image */
+    }
+
+    .property-item h3 {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .property-item p {
+      font-size: 15px;
+      color: #555;
+      margin: 4px 0;
+    }
+
+    .property-item .priority {
+      font-weight: 600;
+      color: #3a86ff; /* Highlight priority text */
+      margin-top: 5px;
+      display: block;
+    }
+
+    /* Styles for the new button below the list */
+    .bottom-button-container {
+      width: 100%;
+      max-width: 700px; /* Match list-container width */
+      text-align: center; /* Center the button within its container */
+      margin-top: 20px; /* Space from the list above */
+    }
+
+    .bottom-button {
+      background-color: #3a86ff; /* Primary blue color */
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 12px; /* Consistent with list items */
+      cursor: pointer;
+      font-size: 1.1em;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-decoration: none; /* Remove underline for anchor tag */
+      display: inline-flex; /* Use inline-flex to center and align icon */
+      align-items: center;
+      justify-content: center;
+      width: calc(100% - 40px); /* Adjust for padding to match list item width visually */
+      max-width: calc(700px - 40px); /* Ensure it doesn't exceed container */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Similar shadow as list items */
+    }
+
+    .bottom-button i {
+        margin-right: 10px;
+    }
+
+    .bottom-button:hover {
+      background-color: #296de0;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <h2><i class="fas fa-star"></i> 추천 매물 Top 3</h2>
+
+  <div class="list-container">
+    <div class="section-title">선택하신 조건을 반영한 매물</div>
+
+    <div class="property-item" onclick="location.href='detail.html'">
+      <div class="property-item-content">
+        <h3>매물 1: <span class="priority">선택한 지역 1순위로 반영</span></h3>
+        <p>배경: 방 사진</p>
+        <p>또는 정보: 서울 강남구, 20평, 방 3개, 보증금 1,000만원, 월세 45만원</p>
+      </div>
+    </div>
+
+    <div class="property-item" onclick="location.href='detail.html'">
+      <div class="property-item-content">
+        <h3>매물 2: <span class="priority">선택한 예산 1순위로 반영</span></h3>
+        <p>배경: 방 사진</p>
+        <p>또는 정보: 서울 마포구, 15평, 방 1개, 보증금 500만원, 월세 60만원</p>
+      </div>
+    </div>
+
+    <div class="property-item" onclick="location.href='detail.html'">
+      <div class="property-item-content">
+        <h3>매물 3: <span class="priority">선택한 평수 1순위로 반영</span></h3>
+        <p>배경: 방 사진</p>
+        <p>또는 정보: 서울 관악구, 25평, 방 2개, 보증금 2,000만원, 월세 40만원</p>
+      </div>
+    </div>
+
+    <div class="property-item" onclick="location.href='detail.html'">
+      <div class="property-item-content">
+        <h3>매물 4: <span class="priority">선택한 방 개수 1순위로 반영</span></h3>
+        <p>배경: 방 사진</p>
+        <p>또는 정보: 서울 영등포구, 18평, 방 2개, 보증금 1,500만원, 월세 55만원</p>
+      </div>
+    </div>
+    
+    </div>
+
+  <div class="bottom-button-container">
+    <a href="filters.html" class="bottom-button"><i class="fas fa-arrow-left"></i> 조건 선택으로 돌아가기</a>
+  </div>
+</body>
+</html>

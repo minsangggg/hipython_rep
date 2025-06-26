@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>매물 상세 보기</title>
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #f0f2f5;
+      padding: 20px 0;
+      font-family: 'SUIT', sans-serif; /* Ensure SUIT font is applied */
+    }
+
+    .container {
+      max-width: 700px; /* Adjusted max-width for narrower layout */
+      margin: 40px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 20px; /* Adjusted margin */
+      text-align: left; /* Aligned left as per image */
+      border-bottom: none; /* No border for main title */
+      padding-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 24px;
+      color: #34495e;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    /* Real Estate Agent Info */
+    .agent-info-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f8f8; /* Lighter background */
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin-top: 25px; /* Space from previous content */
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .agent-info-box span {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .agent-info-box .more-btn {
+      color: #3a86ff;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95em;
+    }
+
+    .agent-info-box .more-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* Price Highlight */
+    .price-highlight {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #e63946; /* A prominent color for price */
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    /* Property Photo Slider */
+    .photo-section {
+      margin-top: 30px;
+      position: relative;
+      background-color: #e9ecef; /* Placeholder background */
+      height: 250px; /* Fixed height for the photo area */
+      border-radius: 12px;
+      overflow: hidden; /* Hide overflowing images */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 1.2em;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .photo-section .slider-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    .photo-section .slider-nav button {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: background-color 0.3s ease;
+    }
+
+    .photo-section .slider-nav button:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .photo-section .dots-container {
+        position: absolute;
+        bottom: 15px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .photo-section .dot {
+        width: 10px;
+        height: 10px;
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .photo-section .dot.active {
+        background-color: #3a86ff; /* Active dot color */
+    }
+
+    /* Property Details List */
+    .detail-list {
+      list-style: none; /* Remove default bullet points */
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    .detail-list li {
+      margin-bottom: 12px;
+      font-size: 16px;
+      color: #4a4a4a;
+      display: flex;
+      align-items: center;
+      line-height: 1.4;
+    }
+
+    .detail-list li i {
+      margin-right: 12px;
+      color: #3a86ff; /* Icon color */
+      font-size: 1.1em;
+    }
+
+    /* Actions buttons (if you want to keep them) */
+    .actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .actions button {
+        flex: 1;
+        padding: 15px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 8px; /* Consistent border-radius */
+    }
+
+    .actions button i {
+        margin-right: 10px;
+    }
+
+    .actions button:first-child {
+      background-color: #e63946; /* Red for Like/찜하기 */
+    }
+
+    .actions button:first-child:hover {
+      background-color: #d12e3b;
+    }
+    .actions button:last-child {
+        background-color: #28a745; /* Green for 상담하기 */
+    }
+    .actions button:last-child:hover {
+        background-color: #218838;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>매물 1: 선택한 지역 1순위로 반영</h2>
+
+    <div class="agent-info-box">
+      <span>공인중개사 정보</span>
+      <a href="#" class="more-btn">더보기 ></a>
+    </div>
+
+    <p class="price-highlight">월세 00만원 , 보증금 0000만원</p>
+
+    <h3 class="section-title">매물 주소</h3>
+    <div class="photo-section">
+        매물 사진
+        <div class="slider-nav">
+            <button>&lt;</button>
+            <button>&gt;</button>
+        </div>
+        <div class="dots-container">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <h3 class="section-title">매물 상세 정보</h3>
+    <ul class="detail-list">
+      <li><i class="fas fa-paw"></i> 반려동물 불가능</li>
+      <li><i class="fas fa-ruler-combined"></i> 전용 16m^2</li>
+      <li><i class="fas fa-home"></i> 오픈형 원룸(방 1개, 욕실 1개)</li>
+      <li><i class="fas fa-building"></i> 반지하/ 3층</li>
+      <li><i class="fas fa-parking"></i> 주차가능</li>
+      </ul>
+
+    <div class="actions">
+      <button onclick="alert('찜 목록에 추가되었습니다!')"><i class="fas fa-heart"></i> 찜하기</button>
+      <button onclick="alert('상담 신청이 완료되었습니다!')"><i class="fas fa-comment-dots"></i> 상담하기</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Basic slider functionality for dots (can be expanded)
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            dots.forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+            // In a real scenario, you'd change the background image here
+            // For now, it's just visual feedback for the dot.
+        });
+    });
+
+    // Basic slider navigation (no actual image change, just visual buttons)
+    const navButtons = document.querySelectorAll('.slider-nav button');
+    navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            console.log(button.textContent.trim() === '<' ? 'Previous image' : 'Next image');
+            // Implement image change logic here
+        });
+    });
+  </script>
+</body>
+</html>
