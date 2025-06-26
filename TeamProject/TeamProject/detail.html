@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>매물 상세 보기</title>
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Specific styles for detail.html */
+    body {
+      background: #f0f2f5;
+      padding: 20px 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 18px; /* Slightly more rounded */
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    /* Slider specific overrides */
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding-bottom: 15px; /* Space for scrollbar */
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #3a86ff #e0e0e0;
+    }
+
+    .slider::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .slider::-webkit-scrollbar-track {
+      background: #e0e0e0;
+      border-radius: 10px;
+    }
+
+    .slider::-webkit-scrollbar-thumb {
+      background-color: #3a86ff;
+      border-radius: 10px;
+      border: 2px solid #e0e0e0;
+    }
+
+    .slider img {
+      min-width: 320px; /* Ensure images are a decent size */
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      scroll-snap-align: start;
+    }
+
+    .info {
+      margin-top: 30px;
+    }
+
+    .info h2 {
+      margin-bottom: 15px;
+      font-size: 28px;
+      color: #2c3e50;
+      border-bottom: 2px solid #f0f2f5;
+      padding-bottom: 10px;
+      text-align: left;
+    }
+
+    .info p {
+      margin: 12px 0;
+      font-size: 16px;
+      color: #4a4a4a;
+      display: flex;
+      align-items: center;
+    }
+
+    .info p i {
+      margin-right: 10px;
+      color: #3a86ff; /* Icon color */
+      font-size: 18px;
+    }
+
+    .actions {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .actions button {
+      flex: 1;
+      padding: 15px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .actions button i {
+      margin-right: 10px;
+    }
+
+    .actions button:first-child {
+      background-color: #e63946; /* Red for Like/찜하기 */
+    }
+
+    .actions button:first-child:hover {
+      background-color: #d12e3b;
+    }
+
+    .map {
+      margin-top: 35px;
+      height: 350px;
+      background-color: #e9ecef;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      border-radius: 12px;
+      font-size: 18px;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="slider">
+      <img src="https://via.placeholder.com/320x250/A8DADC/ffffff?text=Property+Exterior" alt="매물 사진 1">
+      <img src="https://via.placeholder.com/320x250/457B9D/ffffff?text=Living+Room" alt="매물 사진 2">
+      <img src="https://via.placeholder.com/320x250/1D3557/ffffff?text=Kitchen" alt="매물 사진 3">
+      <img src="https://via.placeholder.com/320x250/F4D35E/ffffff?text=Bedroom" alt="매물 사진 4">
+    </div>
+
+    <div class="info">
+      <h2>📍 서울 강남구 원룸</h2>
+      <p><i class="fas fa-money-bill-wave"></i> 보증금 1,000만원 / 월세 45만원</p>
+      <p><i class="fas fa-building"></i> 3층 / 총 5층 · 관리비 5만원</p>
+      <p><i class="fas fa-couch"></i> 옵션: 에어컨, 세탁기, 건조기, 냉장고, 인덕션</p>
+      <p><i class="fas fa-subway"></i> 역세권 · 도보 5분 거리</p>
+      <p><i class="fas fa-calendar-alt"></i> 입주 가능일: 즉시 입주</p>
+      <p><i class="fas fa-lightbulb"></i> 특징: 채광 좋음, 조용한 주택가</p>
+    </div>
+
+    <div class="actions">
+      <button onclick="alert('찜 목록에 추가되었습니다!')"><i class="fas fa-heart"></i> 찜하기</button>
+      <button onclick="alert('상담 신청이 완료되었습니다!')"><i class="fas fa-comment-dots"></i> 상담하기</button>
+    </div>
+
+    <div class="map">
+      🗺️ 여기에 지도 API 삽입 예정 (예: 카카오맵)
+    </div>
+  </div>
+</body>
+</html>

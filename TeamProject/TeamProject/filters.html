@@ -7,15 +7,19 @@
   <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    /* Specific styles for filters.html, overriding or extending style.css */
     body {
-      font-family: 'SUIT', sans-serif;
-      background: #f5f7fa;
-      margin: 0;
-      padding: 0;
+      background: #f5f7fa; /* Lighter background for forms */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Ensure it takes full viewport height */
+      padding: 20px 0;
     }
     .form-container {
       max-width: 500px;
-      margin: 50px auto;
+      width: 100%;
+      margin: auto; /* Center it */
       padding: 30px;
       background: #fff;
       border-radius: 12px;
@@ -25,33 +29,14 @@
       margin-bottom: 24px;
       text-align: center;
       color: #333;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      color: #444;
-    }
-    .form-group i {
-      margin-right: 8px;
-      color: #7c7c7c;
-    }
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-    .checkbox-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-      color: #555;
+    .form-container h2 i {
+      margin-right: 10px;
+      color: #3a86ff;
     }
     .submit-btn {
       width: 100%;
@@ -62,10 +47,23 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     .submit-btn:hover {
       background-color: #296de0;
+      transform: translateY(-2px);
+    }
+    .checkbox-group label {
+      display: flex; /* Use flexbox for better alignment */
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #555;
+    }
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 10px; /* Space between checkbox and label text */
+      transform: scale(1.1); /* Slightly larger checkboxes */
     }
   </style>
 </head>
@@ -78,6 +76,8 @@
         <select name="ageGroup">
           <option value="20대">20대</option>
           <option value="30대">30대</option>
+          <option value="40대">40대</option>
+          <option value="50대">50대 이상</option>
         </select>
       </div>
 
@@ -86,6 +86,7 @@
         <select name="gender">
           <option value="남성">남성</option>
           <option value="여성">여성</option>
+          <option value="선택 안함">선택 안함</option>
         </select>
       </div>
 
@@ -96,12 +97,12 @@
 
       <div class="form-group">
         <label><i class="fas fa-wallet"></i>보증금 (만원)</label>
-        <input type="number" name="deposit" placeholder="예: 1000" />
+        <input type="number" name="deposit" placeholder="예: 1000" min="0" />
       </div>
 
       <div class="form-group">
         <label><i class="fas fa-money-bill-wave"></i>월세 (만원)</label>
-        <input type="number" name="rent" placeholder="예: 40" />
+        <input type="number" name="rent" placeholder="예: 40" min="0" />
       </div>
 
       <div class="form-group checkbox-group">
@@ -109,6 +110,8 @@
         <label><input type="checkbox" name="option" value="에어컨" /> 에어컨</label>
         <label><input type="checkbox" name="option" value="세탁기" /> 세탁기</label>
         <label><input type="checkbox" name="option" value="건조기" /> 건조기</label>
+        <label><input type="checkbox" name="option" value="냉장고" /> 냉장고</label>
+        <label><input type="checkbox" name="option" value="인덕션" /> 인덕션</label>
       </div>
 
       <button class="submit-btn" type="submit">추천 받기</button>
@@ -118,6 +121,8 @@
   <script>
     document.getElementById('filterForm').onsubmit = function(e) {
       e.preventDefault();
+      // In a real application, you would collect form data here and send it to a server
+      // For this example, we just redirect
       location.href = 'results.html';
     };
   </script>

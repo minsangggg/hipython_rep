@@ -1,0 +1,330 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=SUIT:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'SUIT', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Light gray background */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* Buttons */
+button, .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #3a86ff; /* Primary blue */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+button:hover, .btn:hover {
+    background-color: #296de0; /* Darker blue on hover */
+    transform: translateY(-2px);
+}
+
+button:active, .btn:active {
+    transform: translateY(0);
+}
+
+/* Form elements */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #4a4a4a;
+    display: flex;
+    align-items: center;
+}
+
+.form-group label i {
+    margin-right: 10px;
+    color: #5f6c7c;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    width: calc(100% - 24px); /* Adjust for padding */
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group select:focus {
+    border-color: #3a86ff;
+    box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+    outline: none;
+}
+
+/* Checkbox group specific styles */
+.checkbox-group label {
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.1);
+}
+
+/* Card styles (for results.html) */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.card-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body h3 {
+    font-size: 20px;
+    margin: 0 0 12px;
+    color: #2c3e50;
+    text-align: left;
+}
+
+.card-body p {
+    margin: 6px 0;
+    font-size: 15px;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.card-body p i {
+    margin-right: 8px;
+    color: #7f8c8d;
+}
+
+.card .btn {
+    margin-top: auto; /* Pushes the button to the bottom */
+    width: calc(100% - 40px); /* Adjust for card-body padding */
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+/* Specific styles for landing page (index.html) */
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #a8dadc 0%, #457b9d 100%);
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    animation: gradientAnimation 10s ease infinite alternate;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.landing-container h1 {
+    font-size: 4em;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.landing-container p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.landing-container button {
+    padding: 15px 35px;
+    font-size: 1.2em;
+    background-color: #e63946; /* A vibrant red for the button */
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.landing-container button:hover {
+    background-color: #d12e3b;
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Detail Page specific styles */
+.slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px; /* For scrollbar */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.slider img {
+    min-width: 300px; /* Ensure images are a decent size */
+    height: 250px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    scroll-snap-align: start;
+}
+
+.info h2 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: left;
+    border-bottom: 2px solid #f0f2f5;
+    padding-bottom: 10px;
+}
+
+.info p {
+    font-size: 16px;
+    margin: 12px 0;
+    color: #4a4a4a;
+    display: flex;
+    align-items: center;
+}
+
+.info p i {
+    margin-right: 10px;
+    color: #3a86ff;
+    font-size: 18px;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.actions button {
+    flex: 1;
+    padding: 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.actions button i {
+    margin-right: 10px;
+}
+
+.map {
+    margin-top: 30px;
+    height: 350px;
+    background-color: #e9ecef;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 18px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Admin Dashboard specific styles */
+.dashboard {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h2 {
+    font-size: 32px;
+    margin-bottom: 35px;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard h2 i {
+    margin-right: 15px;
+    color: #3a86ff;
+}
+
+.dashboard h3 {
+    font-size: 24px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #34495e;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+canvas {
+    margin-top: 20px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}

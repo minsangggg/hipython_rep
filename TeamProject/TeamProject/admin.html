@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>관리자 대시보드</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+        background: #f0f2f5;
+        padding: 40px 20px;
+    }
+    .dashboard {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    .dashboard h2 {
+      font-size: 32px;
+      margin-bottom: 35px;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dashboard h2 i {
+      margin-right: 15px;
+      color: #3a86ff;
+    }
+    .dashboard h3 {
+      font-size: 24px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      color: #34495e;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    canvas {
+      margin-top: 20px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h2>📈 관리자 대시보드</h2>
+
+    <h3>지역별 평균 시세 (월세 기준)</h3>
+    <canvas id="priceChart" width="800" height="400"></canvas>
+
+    <h3>사용자 입력 조건 분포 (선호 옵션)</h3>
+    <canvas id="conditionChart" width="800" height="400"></canvas>
+  </div>
+
+  <script>
+    const ctx1 = document.getElementById('priceChart').getContext('2d');
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['강남구', '마포구', '관악구', '영등포구', '송파구'],
+        datasets: [{
+          label: '평균 월세 (만원)',
+          data: [80, 60, 45, 70, 65],
+          backgroundColor: [
+            'rgba(58, 134, 255, 0.7)', /* A shade of blue */
+            'rgba(255, 193, 7, 0.7)',  /* A shade of yellow */
+            'rgba(40, 167, 69, 0.7)',  /* A shade of green */
+            'rgba(220, 53, 69, 0.7)',  /* A shade of red */
+            'rgba(23, 162, 184, 0.7)'  /* A shade of teal */
+          ],
+          borderColor: [
+            'rgba(58, 134, 255, 1)',
+            'rgba(255, 193, 7, 1)',
+            'rgba(40, 167, 69, 1)',
+            'rgba(220, 53, 69, 1)',
+            'rgba(23, 162, 184, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: '평균 월세 (만원)'
+            }
+          }
+        },
+        plugins: {
+            legend: {
+                display: false
+            }
+        }
+      }
+    });
+
+    const ctx2 = document.getElementById('conditionChart').getContext('2d');
+    new Chart(ctx2, {
+      type: 'pie',
+      data: {
+        labels: ['에어컨', '세탁기', '건조기', '냉장고', '인덕션', '주차', '보안'],
+        datasets: [{
+          label: '옵션 선호도',
+          data: [30, 22, 12, 15, 8, 7, 6], /* Adjusted data for more options */
+          backgroundColor: [
+            '#FF6B6B', /* Red */
+            '#FFD166', /* Yellow */
+            '#06D6A0', /* Green */
+            '#118AB2', /* Blue */
+            '#073B4C', /* Dark Blue */
+            '#F79256', /* Orange */
+            '#B5838D'  /* Muted Pink */
+          ],
+          hoverOffset: 10
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'right',
+            align: 'start',
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed !== null) {
+                  label += context.parsed + '%';
+                }
+                return label;
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
