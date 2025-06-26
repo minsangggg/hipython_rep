@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>매물 조건 입력</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'SUIT', sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .form-container h2 {
+      margin-bottom: 24px;
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #444;
+    }
+    .form-group i {
+      margin-right: 8px;
+      color: #7c7c7c;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .checkbox-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #555;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background-color: #3a86ff;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .submit-btn:hover {
+      background-color: #296de0;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2><i class="fas fa-home"></i> 조건을 입력하세요</h2>
+    <form id="filterForm">
+      <div class="form-group">
+        <label><i class="fas fa-user"></i>연령대</label>
+        <select name="ageGroup">
+          <option value="20대">20대</option>
+          <option value="30대">30대</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-venus-mars"></i>성별</label>
+        <select name="gender">
+          <option value="남성">남성</option>
+          <option value="여성">여성</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-map-marker-alt"></i>지역</label>
+        <input type="text" name="region" placeholder="예: 서울 강남구" required />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-wallet"></i>보증금 (만원)</label>
+        <input type="number" name="deposit" placeholder="예: 1000" />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-money-bill-wave"></i>월세 (만원)</label>
+        <input type="number" name="rent" placeholder="예: 40" />
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label><i class="fas fa-cogs"></i>필수 옵션</label>
+        <label><input type="checkbox" name="option" value="에어컨" /> 에어컨</label>
+        <label><input type="checkbox" name="option" value="세탁기" /> 세탁기</label>
+        <label><input type="checkbox" name="option" value="건조기" /> 건조기</label>
+      </div>
+
+      <button class="submit-btn" type="submit">추천 받기</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('filterForm').onsubmit = function(e) {
+      e.preventDefault();
+      location.href = 'results.html';
+    };
+  </script>
+</body>
+</html>

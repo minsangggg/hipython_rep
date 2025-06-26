@@ -1,0 +1,22 @@
+/* style.css */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #fff2f2;
+  margin: 0;
+}
+.landing-container {
+  text-align: center;
+}
+button {
+  padding: 12px 24px;
+  background-color: #ff9b9b;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+}
