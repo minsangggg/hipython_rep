@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>매물 추천 페이지 (치안/가격 필터)</title>
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background: #f0f2f5;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+      font-family: 'SUIT', sans-serif;
+    }
+
+    .filter-buttons-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .filter-button {
+      background-color: #e0e0e0;
+      color: #333;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 600;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .filter-button.active {
+      background-color: #6a6a6a;
+      color: white;
+    }
+
+    .filter-button:hover:not(.active) {
+      background-color: #cccccc;
+    }
+
+    .list-container {
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .property-item {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      display: flex; /* Changed to flex to allow hiding with display: none */
+      flex-direction: column;
+      gap: 15px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .property-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .property-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.2;
+      z-index: 1;
+      border-radius: 12px;
+      background-image: url('매물사진1.png'); /* Default room image */
+    }
+
+    .property-item-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .property-item h3 {
+      font-size: 1.2em;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .property-item p {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 3px;
+    }
+
+    .property-item .priority {
+      color: #6a6a6a;
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="filter-buttons-container">
+    <button class="filter-button active" data-filter="overall">종합</button>
+    <button class="filter-button" data-filter="safety">치안</button>
+    <button class="filter-button" data-filter="price">가격</button>
+  </div>
+
+  <div class="list-container" id="propertyList">
+    <div class="property-item" onclick="location.href='detail.html'" data-category="overall">
+      <div class="property-item-content">
+        <h3>매물 1: <span class="priority">선택한 지역 1순위로 반영</span></h3>
+        <p>매물의 특징: 거리가 가깝습니다!</p>
+        <p>배경: 방 사진</p>
+        <p>또는 정보: 서울 강남구, 20평, 방 3개, 보증금 1,000만원, 월세 45만원</p>
+      </div>
+    </div>
+
+    <div class="property-item" onclick="location.href='detail.html'" data-category="overall">
+      <div class="property-item-content">
+        <h3>매물 2: <span class="priority">선택한 예산 2순위로 반영</span></h3>
+        <p>매물의 특징: 적절한 예산으로 좋은 선택입니다!</p>
+        <p>배경: 방 사진</p>
+        <p>또는 정보: 서울 마포구, 15평, 방 1개, 보증금 500만원, 월세 60만원</p>
+      </div>
+    </div>
+
+    <div class="property-item" onclick="location.href='detail.html'" data-category="overall safety">
+      <div class="property-item-content">
+        <h3>매물 3: <span class="priority">치안 중점 매물 1</span></h3>
+        <p>매물의 특징: 여성 안심 귀갓길 인접!</p>
+        <p>배경: 방 사진</p>
+        <p>또는 정보: 서울 관악구, 10평, 방 1개, 보증금 300만원, 월세 40만원</p>
+      </div>
+    </div>
+
+    <div class="property-item" onclick="location.href='detail.html'" data-category="overall safety">
+      <div class="property-item-content">
+        <h3>매물 4: <span class="priority">치안 중점 매물 2</span></h3>
+        <p>매물의 특징: 24시간 경비원 상주 건물!</p>
+        <p>배경: 방 사진</p>
+        <p>또는 정보: 서울 영등포구, 25평, 방 2개, 보증금 2,000만원, 월세 70만원</p>
+      </div>
+    </div>
+
+    <div class="property-item" onclick="location.href='detail.html'" data-category="overall price">
+      <div class="property-item-content">
+        <h3>매물 5: <span class="priority">가격 중점 매물 1</span></h3>
+        <p>매물의 특징: 보증금 낮은 풀옵션 원룸!</p>
+        <p>배경: 방 사진</p>
+        <p>또는 정보: 서울 도봉구, 8평, 방 1개, 보증금 100만원, 월세 35만원</p>
+      </div>
+    </div>
+
+    <div class="property-item" onclick="location.href='detail.html'" data-category="overall price">
+      <div class="property-item-content">
+        <h3>매물 6: <span class="priority">가격 중점 매물 2</span></h3>
+        <p>매물의 특징: 월세 할인 이벤트 적용!</p>
+        <p>배경: 방 사진</p>
+        <p>또는 정보: 서울 은평구, 12평, 방 1개, 보증금 500만원, 월세 40만원</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.filter-button');
+      const propertyItems = document.querySelectorAll('.property-item');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove 'active' class from all buttons
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+
+          // Add 'active' class to the clicked button
+          this.classList.add('active');
+
+          const filter = this.dataset.filter; // Get the filter category from data-filter attribute
+
+          propertyItems.forEach(item => {
+            // If 'overall' is selected, show all items that include 'overall' in their category.
+            // Otherwise, show only items that specifically match the selected filter.
+            if (filter === 'overall') {
+                if (item.dataset.category.includes('overall')) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none'; // Should not happen if all primary items have 'overall'
+                }
+            } else {
+              if (item.dataset.category.includes(filter)) {
+                item.style.display = 'flex'; // Show the item
+              } else {
+                item.style.display = 'none'; // Hide the item
+              }
+            }
+          });
+        });
+      });
+
+      // Initial filter for "종합" on page load
+      document.querySelector('.filter-button[data-filter="overall"]').click();
+    });
+  </script>
+</body>
+</html>

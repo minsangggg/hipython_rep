@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>지역 선택</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background: #f5f7fa; /* Lighter background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      flex-direction: column; /* Stack vertically if needed */
+    }
+    .options-container {
+      display: flex;
+      gap: 20px; /* Space between cards */
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+      justify-content: center; /* Center cards */
+    }
+    .option-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      padding: 40px 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 250px; /* Fixed width for cards */
+      height: 200px; /* Fixed height for cards */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+      text-decoration: none; /* For the anchor tag behavior */
+    }
+    .option-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      background-color: #e6f0ff; /* Light blue on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="options-container">
+    <a href="#" class="option-card" id="company-near-button">
+      회사 근처<br>가 좋아요
+    </a>
+    <a href="#" class="option-card" id="my-neighborhood-button">
+      내가 원하<br>는 동네
+    </a>
+  </div>
+
+  <script>
+    document.getElementById('company-near-button').addEventListener('click', function(event) {
+      event.preventDefault();
+      // Redirect to company_address_search.html when "회사 근처가 좋아요" is clicked
+      window.location.href = 'company_address_search.html';
+    });
+
+    document.getElementById('my-neighborhood-button').addEventListener('click', function(event) {
+  event.preventDefault();
+  window.location.href = 'region_seoul.html';
+});
+  </script>
+</body>
+</html>

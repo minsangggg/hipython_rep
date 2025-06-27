@@ -21,7 +21,38 @@
       border-radius: 18px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
+    /* Back Button specific styles */
+    .back-button-container {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto 20px; /* Center and add space below */
+      text-align: left;
+    }
 
+    .back-button {
+      background-color: #6c757d; /* A neutral gray */
+      color: white;
+      padding: 10px 14px; /* Adjusted padding for icon-only button */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 24px; /* Larger font size for the unicode character */
+      line-height: 1; /* Ensure the character is vertically centered */
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center; /* Center the icon */
+    }
+
+    /* Removed margin-right for icon as it's the only content */
+    .back-button i {
+        /* margin-right: 8px; */
+    }
+
+    .back-button:hover {
+      background-color: #5a6268;
+    }
     h2 {
       font-size: 28px;
       color: #2c3e50;
@@ -102,6 +133,7 @@
       transform: translateY(-50%);
       padding: 0 10px;
       box-sizing: border-box;
+      z-index: 10; /* Ensure buttons are above images */
     }
 
     .photo-section .slider-nav button {
@@ -125,9 +157,10 @@
 
     .photo-section .dots-container {
         position: absolute;
-        bottom: 15px;
+        bottom: 15px; /* Position at the bottom */
         display: flex;
         gap: 8px;
+        z-index: 10; /* Ensure dots are above images */
     }
 
     .photo-section .dot {
@@ -142,6 +175,22 @@
     .photo-section .dot.active {
         background-color: #3a86ff; /* Active dot color */
     }
+
+    .photo-section .slider-images {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
+    }
+
+    .photo-section .slider-images img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        flex-shrink: 0; /* Prevent images from shrinking */
+        border-radius: 12px;
+    }
+
 
     /* Property Details List */
     .detail-list {
@@ -205,25 +254,39 @@
 </head>
 <body>
   <div class="container">
+    <div class="back-button-container">
+      <a href="results.html" class="back-button">↩</a>
+    </div>														
     <h2>매물 1: 선택한 지역 1순위로 반영</h2>
 
     <div class="agent-info-box">
       <span>공인중개사 정보</span>
-      <a href="#" class="more-btn">더보기 ></a>
+      <a href="agent_review.html" class="more-btn">더보기 ></a>
     </div>
 
     <p class="price-highlight">월세 00만원 , 보증금 0000만원</p>
 
     <h3 class="section-title">매물 주소</h3>
-   <div class="photo-section">
-    <img src="매물사진1.png" alt="매물 사진 1" style="width:100%; height:100%; object-fit: cover; border-radius: 12px;">
-    <div class="slider-nav">
-      
+    <div class="photo-section">
+        <div class="slider-images">
+            <img src="매물사진1.png" alt="매물 사진 1">
+            <img src="매물사진1.png" alt="매물 사진 2">
+            <img src="매물사진1.png" alt="매물 사진 3">
+            <img src="매물사진1.png" alt="매물 사진 4">
+            <img src="매물사진1.png" alt="매물 사진 5">
+        </div>
+        <div class="slider-nav">
+            <button id="prevBtn">&lt;</button>
+            <button id="nextBtn">&gt;</button>
+        </div>
+        <div class="dots-container">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+            <div class="dot" data-index="3"></div>
+            <div class="dot" data-index="4"></div>
+        </div>
     </div>
-    <div class="dots-container">
-        
-    </div>
-</div>
 
     <h3 class="section-title">매물 상세 정보</h3>
     <ul class="detail-list">
@@ -232,7 +295,7 @@
       <li><i class="fas fa-home"></i> 오픈형 원룸(방 1개, 욕실 1개)</li>
       <li><i class="fas fa-building"></i> 반지하/ 3층</li>
       <li><i class="fas fa-parking"></i> 주차가능</li>
-      </ul>
+    </ul>
 
     <div class="actions">
       <button onclick="alert('찜 목록에 추가되었습니다!')"><i class="fas fa-heart"></i> 찜하기</button>
@@ -242,25 +305,48 @@
   </div>
 
   <script>
-    // Basic slider functionality for dots (can be expanded)
+    const sliderImages = document.querySelector('.slider-images');
+    const dotsContainer = document.querySelector('.dots-container');
     const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const images = document.querySelectorAll('.slider-images img');
+
+    let currentIndex = 0;
+    const totalImages = images.length;
+
+    function updateSlider() {
+      sliderImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    // Dot click functionality
     dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            dots.forEach(d => d.classList.remove('active'));
-            dot.classList.add('active');
-            // In a real scenario, you'd change the background image here
-            // For now, it's just visual feedback for the dot.
-        });
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateSlider();
+      });
     });
 
-    // Basic slider navigation (no actual image change, just visual buttons)
-    const navButtons = document.querySelectorAll('.slider-nav button');
-    navButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            console.log(button.textContent.trim() === '<' ? 'Previous image' : 'Next image');
-            // Implement image change logic here
-        });
+    // Navigation button functionality
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
+      updateSlider();
     });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+      updateSlider();
+    });
+
+    // Initialize slider position and active dot
+    updateSlider();
   </script>
 </body>
 </html>

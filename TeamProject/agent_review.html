@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>공인중개사 리뷰</title>
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #f0f2f5;
+      padding: 20px 0;
+      font-family: 'SUIT', sans-serif;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .agent-header {
+      display: flex;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 30px;
+    }
+
+    .agent-header img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+      border: 2px solid #3a86ff;
+    }
+
+    .agent-header-info h2 {
+      font-size: 26px;
+      color: #2c3e50;
+      margin: 0;
+      text-align: left;
+    }
+
+    .agent-header-info p {
+      font-size: 16px;
+      color: #777;
+      margin-top: 5px;
+    }
+
+    .response-metrics {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .metric-item {
+      flex: 1;
+      padding: 15px;
+      background-color: #f8f8f8;
+      border-radius: 10px;
+      margin: 0 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .metric-item strong {
+      display: block;
+      font-size: 24px;
+      color: #3a86ff;
+      margin-bottom: 5px;
+    }
+
+    .metric-item span {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .metric-item .top-badge {
+      display: inline-block;
+      background-color: #06D6A0; /* Greenish */
+      color: white;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 12px;
+      margin-left: 5px;
+      font-weight: 600;
+    }
+
+    .satisfaction-rating {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .satisfaction-rating h3 {
+      font-size: 22px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .satisfaction-rating .stars {
+      font-size: 30px; /* 이모티콘 크기 조절 */
+    }
+    .satisfaction-rating .stars .filled {
+      color: #FFD166; /* 채워진 별 색상 */
+    }
+    .satisfaction-rating .stars .empty {
+      color: #ddd; /* 비어있는 별 색상 */
+    }
+
+
+    .review-section h3 {
+      font-size: 22px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .review-item {
+      background-color: #fcfcfc;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+      border: 1px solid #eee;
+    }
+
+    .review-item-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .review-item-header .date {
+      font-size: 14px;
+      color: #888;
+      margin-right: 15px;
+    }
+
+    .review-item-header .stars {
+      font-size: 18px; /* 이모티콘 크기 조절 */
+    }
+    .review-item-header .stars .filled {
+      color: #FFD166; /* 채워진 별 색상 */
+    }
+    .review-item-header .stars .empty {
+      color: #ddd; /* 비어있는 별 색상 */
+    }
+
+    .review-item p {
+      font-size: 15px;
+      color: #4a4a4a;
+      line-height: 1.5;
+    }
+
+    .property-list-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .property-list-section h3 {
+      font-size: 22px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .contact-button-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .contact-button {
+      background-color: #3a86ff; /* Primary blue */
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .contact-button:hover {
+      background-color: #296de0;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="agent-header">
+      <img src="image_fcd1c7.png" alt="공인중개사 프로필 이미지">
+      <div class="agent-header-info">
+        <h2>방구공인중개사사무소</h2>
+        <p>매물 33</p>
+      </div>
+    </div>
+
+    <div class="response-metrics">
+      <div class="metric-item">
+        <span>응답률</span>
+        <strong>94% <span class="top-badge">상위 40%</span></strong>
+      </div>
+      <div class="metric-item">
+        <span>응답시간</span>
+        <strong>1시간 이내 <span class="top-badge">상위 50%</span></strong>
+      </div>
+    </div>
+
+    <div class="satisfaction-rating">
+      <h3>만족도</h3>
+      <div class="stars">
+        <span class="filled">★★★</span><span class="empty">☆☆</span>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <h3>리뷰</h3>
+
+      <div class="review-item">
+        <div class="review-item-header">
+          <span class="date">2025.06.23 거래</span>
+          <div class="stars">
+            <span class="filled">★★★★</span><span class="empty">☆</span>
+          </div>
+        </div>
+        <p>너무 친절하게 안내해주셨는데 본인은 자전거 타고 가고 저는 뛰어오라고 하셔서 조금 당황스러웠어요ㅠㅠ</p>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-header">
+          <span class="date">2025.04.13 거래</span>
+          <div class="stars">
+            <span class="filled">★</span><span class="empty">☆☆☆☆</span>
+          </div>
+        </div>
+        <p>아니 무슨 방구만 뀌시고 방은 소개도 안해주셨어요.. 어이없어</p>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-header">
+          <span class="date">2025.02.02 거래</span>
+          <div class="stars">
+            <span class="filled">★★★★★</span>
+          </div>
+        </div>
+        <p>지방에서 와서 막막했는데 여러 집 소개시켜 주시고 덕분에 조건에 맞게 계약했습니다!!</p>
+      </div>
+    </div>
+
+    <div class="property-list-section">
+      <h3>매물 목록</h3>
+      <p>등록된 매물이 없습니다.</p>
+    </div>
+
+    <div class="contact-button-container">
+      <button class="contact-button" onclick="alert('문의하기 기능은 개발 중입니다.')">문의하기</button>
+    </div>
+
+  </div>
+</body>
+</html>

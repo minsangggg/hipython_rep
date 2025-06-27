@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>서울 구 선택</title>
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f5f7fa;
+      font-family: 'SUIT', sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 480px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .search-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .search-group input {
+      flex: 1;
+      padding: 14px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .search-group button {
+      padding: 0 16px;
+      background-color: #d9d9d9;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .district-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .district-button {
+      background-color: #f0f0f0;
+      color: #000;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .district-button:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>원하는 동네를 입력해주세요!</h2>
+    <div class="search-group">
+      <input type="text" id="regionInput" placeholder="지역을 입력해주세요">
+      <button onclick="searchDistricts()">검색</button>
+    </div>
+    <div class="district-buttons" id="districtList"></div>
+  </div>
+
+  <script>
+    const seoulDistricts = [
+      "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구",
+      "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구",
+      "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"
+    ];
+
+    function searchDistricts() {
+      const input = document.getElementById("regionInput").value.trim();
+      const listContainer = document.getElementById("districtList");
+      listContainer.innerHTML = "";
+
+      if (input === "서울" || input.includes("서울")) {
+        seoulDistricts.forEach(district => {
+          const btn = document.createElement("button");
+          btn.className = "district-button";
+          btn.textContent = district;
+          btn.onclick = () => {
+            window.location.href = `filters.html?selected_region=${encodeURIComponent(district)}`;
+          };
+          listContainer.appendChild(btn);
+        });
+      }
+    }
+  </script>
+</body>
+</html>

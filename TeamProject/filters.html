@@ -15,12 +15,13 @@
       align-items: center;
       min-height: 100vh; /* Ensure it takes full viewport height */
       padding: 20px 0;
+      font-family: 'SUIT', sans-serif;
     }
     .form-container {
-      max-width: 500px;
+      max-width: 375px; /* Adjusted to be closer to a mobile screen size as depicted */
       width: 100%;
       margin: auto; /* Center it */
-      padding: 30px;
+      padding: 20px; /* Reduced padding */
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -28,103 +29,250 @@
     .form-container h2 {
       margin-bottom: 24px;
       text-align: center;
+      display: none; /* Hidden as per image */
+    }
+    .form-group {
+      margin-bottom: 15px; /* Reduced margin */
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
       color: #333;
-      font-size: 26px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      padding: 10px 15px; /* Padding for the label/button area */
+      background-color: #f0f0f0; /* Light grey background for sections */
+      border-radius: 8px;
+      position: relative;
     }
-    .form-container h2 i {
-      margin-right: 10px;
-      color: #3a86ff;
+    .form-group label i {
+      margin-right: 8px;
+      color: #3a86ff; /* Icon color */
     }
-    .submit-btn {
-      width: 100%;
-      padding: 14px;
-      background-color: #3a86ff;
-      color: white;
+    .form-group select {
+      width: 100%; /* Full width as in image */
+      padding: 12px 15px; /* Padding for dropdowns */
+      border: 1px solid #ddd;
+      border-radius: 8px;
       font-size: 16px;
+      box-sizing: border-box;
+      background-color: white;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20320%20512%22%3E%3Cpath%20fill%3D%22%23495057%22%20d%3D%22M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0L160 273.4l96.5-96.5c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z%22%2F%3E%3C%2Fsvg%3E');
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      background-size: 12px;
+      margin-top: 10px; /* Space between label and select */
+    }
+
+    /* Styles for the range slider */
+    .range-slider-container {
+      width: 100%;
+      padding: 0 10px; /* Add some padding to prevent labels from touching edges */
+      box-sizing: border-box;
+      margin-top: 10px; /* Space between label and slider */
+    }
+
+    .slider-labels {
+        display: flex; /* Changed from grid to flex */
+        justify-content: space-between; /* Distribute items evenly with space between them */
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+    .slider-labels span {
+        text-align: center; /* Center text within each span */
+    }
+
+
+    input[type="range"] {
+      width: 100%;
+      -webkit-appearance: none; /* Override default look */
+      appearance: none;
+      height: 5px; /* Height of the track */
+      background: #ddd; /* Track color */
+      border-radius: 5px;
+      outline: none; /* Remove focus outline */
+      margin: 10px 0; /* Vertical margin */
+    }
+
+    /* Webkit (Chrome, Safari, Edge) thumb style */
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px; /* Size of the thumb */
+      height: 20px;
+      background: #3a86ff; /* Thumb color */
+      border-radius: 50%; /* Make it round */
+      cursor: grab;
+      margin-top: -7.5px; /* Center thumb vertically on track */
+      box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    }
+
+    /* Firefox thumb style */
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: #3a86ff;
+      border-radius: 50%;
+      cursor: grab;
+      box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+      flex-direction: row; /* Horizontal layout for buttons */
+      justify-content: space-between;
+    }
+    .button-group button,
+    .button-group a {
+      padding: 14px 0; /* Vertical padding only, width handled by flex-basis */
+      font-size: 16px;
+      font-weight: 700;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+      text-align: center;
+      flex-basis: calc(33.33% - 7px); /* Approximately 3 buttons per row with gaps */
+      box-sizing: border-box; /* Crucial for consistent sizing with padding */
+      text-decoration: none; /* For the anchor tag */
+      color: white; /* Default text color for buttons */
     }
-    .submit-btn:hover {
-      background-color: #296de0;
-      transform: translateY(-2px);
+    .button-group .previous-button {
+      background-color: #6c757d; /* Grey color for "이전" */
     }
-    .checkbox-group label {
-      display: flex; /* Use flexbox for better alignment */
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 15px;
-      color: #555;
+    .button-group .previous-button:hover {
+      background-color: #5a6268;
     }
-    .checkbox-group input[type="checkbox"] {
-      margin-right: 10px; /* Space between checkbox and label text */
-      transform: scale(1.1); /* Slightly larger checkboxes */
+    .button-group .detail-filters-button {
+      background-color: #6c757d; /* Grey color for "상세필터 선택" */
     }
+    .button-group .detail-filters-button:hover {
+      background-color: #5a6268;
+    }
+    .button-group .submit-button {
+      background-color: #3a86ff; /* Blue color for "확인" */
+      color: white;
+    }
+    .button-group .submit-button:hover {
+      background-color: #2a6edc;
+    }
+
+    .form-group label .arrow-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: #495057;
+    }
+
   </style>
 </head>
 <body>
   <div class="form-container">
-    <h2><i class="fas fa-home"></i> 조건을 입력하세요</h2>
-    <form id="filterForm">
+    <form action="results.html" method="get">
       <div class="form-group">
-        <label><i class="fas fa-user"></i>연령대</label>
-        <select name="ageGroup">
-          <option value="20대">20대</option>
-          <option value="30대">30대</option>
-          <option value="40대">40대</option>
-          <option value="50대">50대 이상</option>
+        <label>연령대를 선택하세요<i class="fas fa-chevron-down arrow-icon"></i></label>
+        <select name="age_group">
+          <option value="">선택 안함</option>
+          <option value="20s">20대</option>
+          <option value="30s">30대</option>
+          <option value="40s">40대</option>
+          <option value="50s_over">50대 이상</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label><i class="fas fa-venus-mars"></i>성별</label>
-        <select name="gender">
-          <option value="남성">남성</option>
-          <option value="여성">여성</option>
-          <option value="선택 안함">선택 안함</option>
+        <label>원하는 보증금 범위를 선택하세요</label>
+        <div class="range-slider-container">
+            <input type="range" id="depositRange" name="deposit" min="0" max="20000" step="100" value="0">
+            <div class="slider-labels">
+                <span>최소</span>
+                <span>5천만</span>
+                <span>1억</span>
+                <span>1.5억</span>
+                <span>최대</span>
+            </div>
+            <input type="hidden" name="deposit_min_val" id="deposit_min_val" value="" />
+            <input type="hidden" name="deposit_max_val" id="deposit_max_val" value="" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>원하는 월세를 범위를 선택하세요</label>
+        <div class="range-slider-container">
+            <input type="range" id="rentRange" name="rent" min="0" max="200" step="10" value="0">
+            <div class="slider-labels">
+                <span>최소</span>
+                <span>50만</span>
+                <span>100만</span>
+                <span>150만</span>
+                <span>최대</span>
+            </div>
+            <input type="hidden" name="rent_min_val" id="rent_min_val" value="" />
+            <input type="hidden" name="rent_max_val" id="rent_max_val" value="" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>평수를 선택하세요<i class="fas fa-chevron-down arrow-icon"></i></label>
+        <select name="area">
+          <option value="">선택 안함</option>
+          <option value="5">~5</option>
+          <option value="10">~10</option>
+          <option value="15">~15</option>
+          <option value="20">~20</option>
+          <option value="25">~25</option>
+          <option value="30">~30</option>
+          <option value="31">30 이상</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label><i class="fas fa-map-marker-alt"></i>지역</label>
-        <input type="text" name="region" placeholder="예: 서울 강남구" required />
+        <label>방 개수를 선택하세요<i class="fas fa-chevron-down arrow-icon"></i></label>
+        <select name="rooms">
+          <option value="">선택 안함</option>
+          <option value="1">1개</option>
+          <option value="2">2개</option>
+          <option value="3_plus">3개 이상</option>
+        </select>
       </div>
 
-      <div class="form-group">
-        <label><i class="fas fa-wallet"></i>보증금 (만원)</label>
-        <input type="number" name="deposit" placeholder="예: 1000" min="0" />
+      <div class="button-group">
+        <a href="region.html" class="previous-button">이전</a>
+        <a href="detail_filters.html" class="detail-filters-button">상세필터 선택</a>
+        <button type="submit" class="submit-button">확인</button>
       </div>
-
-      <div class="form-group">
-        <label><i class="fas fa-money-bill-wave"></i>월세 (만원)</label>
-        <input type="number" name="rent" placeholder="예: 40" min="0" />
-      </div>
-
-      <div class="form-group checkbox-group">
-        <label><i class="fas fa-cogs"></i>필수 옵션</label>
-        <label><input type="checkbox" name="option" value="에어컨" /> 에어컨</label>
-        <label><input type="checkbox" name="option" value="세탁기" /> 세탁기</label>
-        <label><input type="checkbox" name="option" value="건조기" /> 건조기</label>
-        <label><input type="checkbox" name="option" value="냉장고" /> 냉장고</label>
-        <label><input type="checkbox" name="option" value="인덕션" /> 인덕션</label>
-      </div>
-
-      <button class="submit-btn" type="submit">추천 받기</button>
     </form>
   </div>
 
   <script>
-    document.getElementById('filterForm').onsubmit = function(e) {
-      e.preventDefault();
-      // In a real application, you would collect form data here and send it to a server
-      // For this example, we just redirect
-      location.href = 'results.html';
-    };
+    const depositRange = document.getElementById('depositRange');
+    const depositMinValInput = document.getElementById('deposit_min_val'); // Placeholder for min
+    const depositMaxValInput = document.getElementById('deposit_max_val'); // Placeholder for max
+
+    depositRange.addEventListener('input', () => {
+        depositMaxValInput.value = depositRange.value;
+    });
+
+    const rentRange = document.getElementById('rentRange');
+    const rentMinValInput = document.getElementById('rent_min_val'); // Placeholder for min
+    const rentMaxValInput = document.getElementById('rent_max_val'); // Placeholder for max
+
+    rentRange.addEventListener('input', () => {
+        rentMaxValInput.value = rentRange.value;
+    });
+
+    // Set initial values (optional, based on your form logic)
+    depositMaxValInput.value = depositRange.value;
+    rentMaxValInput.value = rentRange.value;
   </script>
 </body>
 </html>

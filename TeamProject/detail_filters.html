@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>상세 필터</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px 0;
+    }
+    .form-container {
+      max-width: 500px;
+      width: 100%;
+      margin: auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .form-container h2 {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      display: flex;
+      align-items: center;
+    }
+    .form-group label i {
+      margin-right: 8px;
+      color: #3a86ff;
+    }
+    .checkbox-group {
+      margin-bottom: 25px; /* Added margin-bottom */
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-weight: 400;
+      cursor: pointer;
+    }
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+      flex-direction: column;
+    }
+    .button-group button {
+      padding: 14px 25px;
+      font-size: 18px;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    .button-group button.back-button {
+      background-color: #6c757d;
+      color: white;
+    }
+    .button-group button.back-button:hover {
+      background-color: #5a6268;
+    }
+    .button-group button.apply-button {
+      background-color: #28a745; /* Green for apply */
+      color: white;
+    }
+    .button-group button.apply-button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2><i class="fas fa-filter"></i>상세 필터 및 필수 옵션</h2>
+
+    <form action="filters.html" method="get"> <div class="form-group checkbox-group">
+        <label><i class="fas fa-cogs"></i>필수 옵션</label>
+        <label><input type="checkbox" name="option" value="에어컨" /> 에어컨</label>
+        <label><input type="checkbox" name="option" value="세탁기" /> 세탁기</label>
+        <label><input type="checkbox" name="option" value="건조기" /> 건조기</label>
+        <label><input type="checkbox" name="option" value="냉장고" /> 냉장고</label>
+        <label><input type="checkbox" name="option" value="인덕션" /> 인덕션</label>
+        <label><input type="checkbox" name="option" value="전자레인지" /> 전자레인지</label>
+        <label><input type="checkbox" name="option" value="침대" /> 침대</label>
+        <label><input type="checkbox" name="option" value="옷장" /> 옷장</label>
+        <label><input type="checkbox" name="option" value="책상" /> 책상</label>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label><i class="fas fa-shield-alt"></i>보안/안전</label>
+        <label><input type="checkbox" name="security" value="CCTV" /> CCTV</label>
+        <label><input type="checkbox" name="security" value="방범창" /> 방범창</label>
+        <label><input type="checkbox" name="security" value="도어락" /> 도어락</label>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label><i class="fas fa-leaf"></i>친환경/웰빙</label>
+        <label><input type="checkbox" name="environment" value="공기청정기" /> 공기청정기</label>
+        <label><input type="checkbox" name="environment" value="층간소음방지" /> 층간소음방지</label>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label><i class="fas fa-parking"></i>주차/교통</label>
+        <label><input type="checkbox" name="parking" value="주차가능" /> 주차 가능</label>
+        <label><input type="checkbox" name="parking" value="역세권" /> 역세권</label>
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="back-button" onclick="history.back()"><i class="fas fa-arrow-left"></i> 뒤로가기</button>
+        <button type="submit" class="apply-button"><i class="fas fa-check-circle"></i> 선택 완료</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
