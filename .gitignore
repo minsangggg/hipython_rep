@@ -1,1 +1,12 @@
 Study/data/creditcard.csv
+
+# === Python ===
+__pycache__/
+*.py[cod]
+
+# === Virtual Envs ===
+lg7pilot/
+lguplus7/
+
+# === Jupyter ===
+.ipynb_checkpoints/
