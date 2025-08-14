@@ -1,2 +1,10 @@
 Study/data/creditcard.csv
-lg7pilot/
+lg7pilot/include/
+lg7pilot/Lib/
+lg7pilot/Scripts/
+lg7pilot/pyvenv.cfg
+.venv/
+데이터 파이프라인/include
+데이터 파이프라인/Lib
+데이터 파이프라인/Scripts
+데이터 파이프라인/pyvenv.cfg
