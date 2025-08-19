@@ -9,3 +9,4 @@ lg7pilot/pyvenv.cfg
 데이터 파이프라인/Scripts
 데이터 파이프라인/pyvenv.cfg
 .vscode/
+*.csv
