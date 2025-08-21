@@ -61,11 +61,7 @@ def show_select_location():
         if st.button("다음"):
             st.session_state.page = "filters"
 
-    # 👉 아래에 뒤로가기 버튼 추가
-    st.markdown("---")
-    if st.button("⬅ 뒤로가기", use_container_width=True):
-        st.session_state.page = "intro"
-        st.rerun()
+  
         
         
 # 조건 선택 페이지
