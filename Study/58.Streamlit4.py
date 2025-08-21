@@ -102,8 +102,6 @@ def show_results():
 
 
 def show_preference_chart():
-    st.header(" 이용자 선호도")
-
     # 예시 데이터
     df = pd.DataFrame({
         "Date": range(20),
@@ -111,8 +109,21 @@ def show_preference_chart():
         "투룸/오피스텔/빌라": pd.Series(np.random.randn(20)).cumsum()
     })
 
-    fig = px.area(df, x="Date", y=["원룸", "투룸/오피스텔/빌라"], title="주거 형태 선호도 변화")
+    fig = px.area(
+        df,
+        x="Date",
+        y=["원룸", "투룸/오피스텔/빌라"],
+        title="선택한 매물 선호도"
+    )
+
+    # y축 라벨을 "선호도"로 변경
+    fig.update_layout(
+        yaxis_title="선호도",
+        xaxis_title="날짜"
+    )
+
     st.plotly_chart(fig, use_container_width=True)
+
 
 def show_contact():
     st.header("📬 문의하기")
