@@ -4,7 +4,7 @@ import folium
 from streamlit_folium import st_folium
 import plotly.express as px
 import numpy as np
-
+import os
 
 # --------------------------
 # 페이지 함수 정의
@@ -22,9 +22,17 @@ def show_home():
     col2.metric("평균 보증금", "2,500만 원")
     col3.metric("인기 유형", "투룸/오피스텔/빌라")
 
+      # 현재 실행 중인 파일 경로 기준
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+    # 이미지 경로 생성
+    img1_path = os.path.join(BASE_DIR, "house1.png")
+    img2_path = os.path.join(BASE_DIR, "house2.png")
+
     # 2. 오늘의 추천 매물
-    st.subheader(" 오늘의 추천 매물")
+    st.subheader("오늘의 추천 매물")
     col1, col2 = st.columns(2)
+
     with col1:
         st.image("house1.png", width=250, caption="서울시 강남구 / 전세 2억")
     with col2:
