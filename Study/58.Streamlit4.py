@@ -54,7 +54,7 @@ def show_filters():
 
 
 def show_results():
-    st.header("📊 추천 결과")
+    st.header(" 추천 결과")
 
     # ✅ 임시 매물 데이터 (길이 맞춤: 4개씩)
     data = {
@@ -102,7 +102,7 @@ def show_results():
 
 
 def show_preference_chart():
-    st.header("📊 이용자 선호도")
+    st.header(" 이용자 선호도")
 
     # 예시 데이터
     df = pd.DataFrame({
