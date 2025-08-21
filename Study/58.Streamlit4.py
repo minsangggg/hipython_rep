@@ -17,7 +17,7 @@ def show_intro():
 
     col1, col2, col3 = st.columns([1,2,1])  # 비율 조정
     with col2:
-        st.image("hhh.png", width=400)
+        st.image(image_path, width=400)
 
     st.markdown("<h2 style='text-align:center;'>방구</h2>", unsafe_allow_html=True)
     st.markdown("<p style='text-align:center;'>사회 초년생의 방구하기!</p>", unsafe_allow_html=True)
@@ -60,10 +60,12 @@ def show_select_location():
         radius = st.slider("반경(km)", 1, 10, 3)
         if st.button("다음"):
             st.session_state.page = "filters"
+            st.rerun()   # 🔑 rerun 바로 호출
     else:
         region = st.text_input("원하는 동네를 입력하세요")
         if st.button("다음"):
             st.session_state.page = "filters"
+            st.rerun()   # 🔑 rerun 바로 호출
 
   
         
