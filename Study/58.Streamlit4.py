@@ -34,9 +34,9 @@ def show_home():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("house1.png", width=250, caption="서울시 강남구 / 전세 2억")
+        st.image("Study/house1.png", width=250, caption="서울시 강남구 / 전세 2억")
     with col2:
-        st.image("house2.png", width=250, caption="경기도 성남시 / 월세 80만 원")
+        st.image("Study/house2.png", width=250, caption="경기도 성남시 / 월세 80만 원")
 
     # 3. 최근 선호도 트렌드 그래프
     st.subheader("📈 최근 선호도 변화")
