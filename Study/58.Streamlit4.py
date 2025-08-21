@@ -5,21 +5,54 @@ from streamlit_folium import st_folium
 import plotly.express as px
 import numpy as np
 
+
 # --------------------------
 # 페이지 함수 정의
 # --------------------------
 
-def show_intro():
-    st.title("🏠 부동산 추천 서비스")
-    st.write("환영합니다! 사이드바에서 메뉴를 선택해주세요.")
+# 홈 화면 (Dashboard 느낌)
+def show_home():
+    st.title("🏠 부동산 매물 추천 서비스")
+    st.markdown("사용자 조건에 맞는 맞춤형 매물을 추천하고, 선호도 트렌드를 시각화합니다.")
 
+    # 1. 주요 지표 요약 (Metric 카드)
+    st.subheader("📊 주요 지표 요약")
+    col1, col2, col3 = st.columns(3)
+    col1.metric("전체 매물 수", "1,245", "+30")
+    col2.metric("평균 보증금", "2,500만 원")
+    col3.metric("인기 유형", "투룸/오피스텔/빌라")
+
+    # 2. 오늘의 추천 매물
+    st.subheader("🏅 오늘의 추천 매물")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("house1.jpg", width=250, caption="서울시 강남구 / 전세 2억")
+    with col2:
+        st.image("house2.jpg", width=250, caption="경기도 성남시 / 월세 80만 원")
+
+    # 3. 최근 선호도 트렌드 그래프
+    st.subheader("📈 최근 선호도 변화")
+    df = pd.DataFrame({
+        "Date": range(20),
+        "원룸": pd.Series(np.random.randn(20)).cumsum(),
+        "투룸/오피스텔/빌라": pd.Series(np.random.randn(20)).cumsum()
+    })
+    fig = px.area(df, x="Date", y=["원룸", "투룸/오피스텔/빌라"],
+                  title="최근 1개월간 선호도 변화")
+    fig.update_layout(yaxis_title="선호도", xaxis_title="날짜")
+    st.plotly_chart(fig, use_container_width=True)
+
+    # 4. 안내문
+    st.info("👉 왼쪽 사이드바에서 지역과 조건을 선택해 매물 추천을 받아보세요!")
+
+
+# 조건 선택 페이지
 def show_filters():
-    st.header(" 조건 선택")
+    st.header("조건 선택")
       
     # 0) 지역 선택
     region = st.selectbox("지역을 선택하세요", ["서울", "경기"])
     st.session_state["region"] = region
-    st.success(f"선택된 지역: {region}")  
     
     # 1) 주거 형태 선택
     housing_type = st.radio(
@@ -27,7 +60,6 @@ def show_filters():
         ["원룸", "투룸/오피스텔/빌라"]
     )
     st.session_state["housing_type"] = housing_type
-    st.info(f"선택된 주거 형태: {housing_type}")
 
     # 2) 가격 범위
     price_range = st.slider("가격 범위 (만원)", 500, 5000, (1000, 3000))
@@ -53,10 +85,11 @@ def show_filters():
     st.session_state["move_in"] = move_in
 
 
+# 추천 결과 페이지
 def show_results():
-    st.header(" 추천 결과")
+    st.header("추천 결과")
 
-    # ✅ 임시 매물 데이터 (길이 맞춤: 4개씩)
+    # 임시 매물 데이터
     data = {
         "지역": ["서울", "서울", "경기", "경기"],
         "유형": ["원룸", "투룸/오피스텔/빌라", "원룸", "투룸/오피스텔/빌라"],
@@ -65,7 +98,6 @@ def show_results():
     }
     df = pd.DataFrame(data)
 
-    # 매물 리스트 테이블
     st.write("### 전체 매물 리스트")
     st.dataframe(df)
 
@@ -75,7 +107,7 @@ def show_results():
     if selected:
         st.success(f"선택된 매물: {selected}")
 
-        # (예시) 주소별 임시 위도/경도 매핑
+        # 주소별 임시 위도/경도 매핑
         coords = {
             "서울시 A구": (37.5665, 126.9780),
             "서울시 B구": (37.56, 126.99),
@@ -91,7 +123,7 @@ def show_results():
         # Streamlit에 출력
         st_folium(m, width=700, height=500)
 
-    # 필터 적용
+    # 필터 적용 (조건 맞는 매물만 보여줌)
     filtered = df[
         (df["유형"] == st.session_state.get("housing_type", "원룸")) &
         (df["가격(만원)"].between(*st.session_state.get("price_range", (500, 5000))))
@@ -101,8 +133,10 @@ def show_results():
     st.dataframe(filtered)
 
 
+# 이용자 선호도 페이지
 def show_preference_chart():
-    # 예시 데이터
+    st.header("이용자 선호도")
+
     df = pd.DataFrame({
         "Date": range(20),
         "원룸": pd.Series(np.random.randn(20)).cumsum(),
@@ -116,7 +150,6 @@ def show_preference_chart():
         title="선택한 매물 선호도"
     )
 
-    # y축 라벨을 "선호도"로 변경
     fig.update_layout(
         yaxis_title="선호도",
         xaxis_title="날짜"
@@ -125,9 +158,11 @@ def show_preference_chart():
     st.plotly_chart(fig, use_container_width=True)
 
 
+# 문의하기 페이지
 def show_contact():
     st.header("📬 문의하기")
     st.write("문의사항은 아래 이메일로 보내주세요: support@example.com")
+
 
 # --------------------------
 # 메인 실행 부분
@@ -141,7 +176,7 @@ def main():
     )
 
     if menu == "홈":
-        show_intro()
+        show_home()
     elif menu == "조건 선택":
         show_filters()
     elif menu == "추천 결과":
@@ -150,6 +185,7 @@ def main():
         show_preference_chart()
     elif menu == "문의하기":
         show_contact()
+
 
 if __name__ == "__main__":
     main()
