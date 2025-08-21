@@ -13,3 +13,4 @@ lg7pilot/pyvenv.cfg
 *.png
 *.jpg
 *.jpeg
+!hhh.png
