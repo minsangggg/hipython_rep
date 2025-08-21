@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 # 페이지 설정 (맨 위에 있어야 함)
 st.set_page_config(layout="centered", page_title="방구 대시보드", page_icon="💨")
@@ -9,11 +10,14 @@ if "page" not in st.session_state:
 
 # Intro 페이지
 def show_intro():
-   
+    
+    # 현재 파일(58.Streamlit4.py)이 있는 폴더 기준으로 경로 설정
+    current_dir = os.path.dirname(__file__)
+    image_path = os.path.join(current_dir, "hhh.png")
 
     col1, col2, col3 = st.columns([1,2,1])  # 비율 조정
     with col2:
-        st.image("Study/hhh.png", width=400)
+        st.image("hhh.png", width=400)
 
     st.markdown("<h2 style='text-align:center;'>방구</h2>", unsafe_allow_html=True)
     st.markdown("<p style='text-align:center;'>사회 초년생의 방구하기!</p>", unsafe_allow_html=True)
