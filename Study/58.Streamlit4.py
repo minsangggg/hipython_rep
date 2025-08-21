@@ -17,7 +17,7 @@ def show_select_location():
     st.success(f"선택된 지역: {region}")
 
 def show_filters():
-    st.header("⚙️ 조건 선택")
+    st.header(" 조건 선택")
 
     # ✅ 주거 형태 선택 (원룸, 투룸/오피스텔/빌라)
     housing_type = st.radio(
@@ -97,7 +97,7 @@ def main():
     st.sidebar.title("🏠 Main Menu")
 
     menu = st.sidebar.radio(
-        "Navigation",
+        "선택",
         ["홈", "지역 선택", "조건 선택", "추천 결과", "이용자 선호도", "문의하기"]
     )
 
