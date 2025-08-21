@@ -20,7 +20,7 @@ with col2:
     '오늘의 미세먼지',
     value='좋음',
     delta='-30',
-    delta_color='inverse'
+    delta_color='inverse'  #감소가 좋은 상황에서 inverse써야 직관적인 색상표시 가능
 )
     
 ##
@@ -35,9 +35,6 @@ df=pd.DataFrame(data)
 st.dataframe(df)
 
 
-st.divider()
-
-st.table(df)
 
 st.divider()
 
@@ -55,9 +52,15 @@ df
 df['Date']=pd.to_datetime(df['Date'])
 df['YearMonth']=df['Date'].dt.to_period('M').astype(str)
 
+#df['Date'] 컬럼을 날짜/시간 형식(datetime64)으로 변환합니다.
+#문자열 "2025-08-21" 같은 값이 있으면 Timestamp('2025-08-21 00:00:00') 으로 바뀝니다.
+#이후 날짜 관련 기능(.dt.year, .dt.month 등)을 쓸 수 있게 됩니다.
+
+#.to_period('M') → 날짜를 연-월 단위 Period 객체로 변환 (예: 2025-08)
+
 fig=px.box(df, x="YearMonth", y="Close", title="ABNB 월별 종가")
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True) #그래프의 가로 크기를 Streamlit 컨테이너(컬럼/레이아웃 폭)에 맞추어 자동 조정
 
 ################
 # 3. Plotly Line Chart 생성
@@ -98,10 +101,10 @@ if (x_option is not None) and (y_option is not None):
         fig = px.bar(
             df,
             x=x_option,
-            y=y_option,
+            y=y_option,    #축에 어떤 컬럼을 쓸지 지정
             color=hue_option,
             title=f"{y_option} by {x_option}",
-            barmode="group"
+            barmode="group"  #막대를 옆으로 그룹형으로 보기
         )
     else:
         fig = px.bar(

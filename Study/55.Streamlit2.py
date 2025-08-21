@@ -10,20 +10,20 @@ if active:
 #함수, on_change=checkbox_write
 def checkbox_write():
     st.write('뭐먹을래?')
-st.checkbox('배고파', on_change=checkbox_write)
+st.checkbox('배고파', on_change=checkbox_write) #on_change : 값이 바뀌었을 때 특정 함수를 자동으로 실행가능
 
 ##세션-상태 값에 저장
 if 'checkbox_state' not in st.session_state:  #st.session_state는 Streamlit 앱에서 rerun될 때도 유지되는 상태 저장소
     st.session_state.checkbox_state=False
 
 def checkbox_write1():           #콜백 함수 정의
-    st.session_state.checkbox_state=True  #체크박스 값이 바뀌면 실행
+    st.session_state.checkbox_state=st.session_state["my_checkbox"]  #체크박스 값이 바뀌면 실행
     
 
 if st.session_state.checkbox_state:
     st.write('응...')
     
-st.checkbox('진짜 누를래???', on_change=checkbox_write1)
+st.checkbox('진짜 누를래???', key='my_checkbox', on_change=checkbox_write1) #key를 지정해줘야 체크풀리면  st.write도 풀림
 
 st.divider()
 
@@ -39,7 +39,7 @@ else:
 option=st.selectbox(
     '점심메뉴 고르기',
     options=['두찜','버거','우동','쫄면'],
-    index=None,
+    index=None,  # 아무것도 선택되지 않은 상태로 시작, 0이면 첫번째 옵션
     placeholder='네 개 중 하나만 골랴야돼'
 )
 st.text(f'오늘의 점심메뉴는:{option}')
@@ -83,11 +83,11 @@ st.text(f'텍스트 입력 결과: {txt1}, {txt2}')
 #데이터베이스에 저장하는 로직도 구현할 수 있습니다.
 
 file=st.file_uploader(
-    '파일 선택', type='csv', accept_multiple_files=False
+    '파일 선택', type='csv', accept_multiple_files=False #올릴 수 있는 파일csv로 지정, 한번에 여러개 업로드 불가
 )
 if file is not  None:
     df=pd.read_csv(file)
     st.write(df)
 
     with open(file.name, 'wb') as out:
-        out.write(file.getbuffer())
+        out.write(file.getbuffer())   #file.getbuffer(): 업로드한 파일의 내용 가져오기
