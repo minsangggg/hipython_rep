@@ -13,7 +13,7 @@ def show_intro():
 
     col1, col2, col3 = st.columns([1,2,1])  # 비율 조정
     with col2:
-        st.image("hhh.png", width=400)
+        st.image("Study/hhh.png", width=400)
 
     st.markdown("<h2 style='text-align:center;'>방구</h2>", unsafe_allow_html=True)
     st.markdown("<p style='text-align:center;'>사회 초년생의 방구하기!</p>", unsafe_allow_html=True)
