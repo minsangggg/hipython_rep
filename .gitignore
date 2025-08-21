@@ -14,3 +14,5 @@ lg7pilot/pyvenv.cfg
 *.jpg
 *.jpeg
 !hhh.png
+!house1.png
+!house2.png
