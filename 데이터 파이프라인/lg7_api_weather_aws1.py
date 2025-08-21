@@ -19,7 +19,7 @@ except mariadb.Error as e:
 tar_cur = conn_tar.cursor()
 
 # URL과 저장 경로 변수를 지정합니다.
-req_url = 'https://apihub.kma.go.kr/api/typ01/cgi-bin/url/nph-aws2_min?stn=0&disp=0&help=1&authKey=OfKWVp0fSi6ylladH_ou4w'
+req_url = 'https://apihub.kma.go.kr/api/typ01/cgi-bin/url/nph-aws2_min?stn=0&disp=0&help=1&authKey=OfKWVpfSi6ylladH_ou4w'
 
 while True:
     response = requests.get( req_url ) # 파일 URL에 GET 요청 보내기
