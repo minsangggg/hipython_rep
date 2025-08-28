@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>매물 상세 정보</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 16px 40px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+    }
+    .header img {
+      width: 50px;
+      margin-right: 10px;
+    }
+    .header h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      height: calc(100vh - 80px);
+    }
+    .sidebar {
+      width: 40%;
+      background-color: #f9f9f9;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .category-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .category-buttons button {
+      flex: 1;
+      padding: 10px;
+      font-weight: bold;
+      background-color: #fde4de;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .card {
+      background-color: white;
+      border-radius: 5px;
+      padding: 16px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.05);
+    }
+    .details {
+      width: 60%;
+      padding: 30px;
+      background-color: white;
+      border-left: 1px solid #ccc;
+    }
+    .details h2 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .details .price {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .image-box {
+  width: 100%;
+  height: 200px;
+  background-color: #f2f2f2;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.house-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+    .image-box span {
+      color: #888;
+    }
+    .info {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .map {
+      width: 100%;
+      height: 200px;
+    }
+    .button-row {
+      margin-top: 20px;
+    }
+    .button-row button {
+      padding: 10px 20px;
+      background-color: #dcdcdc;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .button-row button:hover {
+      background-color: #bbb;
+    }
+    .btn-top {
+      float: right;
+      background-color: #f0f0f0;
+      font-size: 12px;
+      padding: 5px 12px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 -->
+  <div class="header">
+    <img src="bangu.png" alt="로고">
+    <h1>방구</h1>
+  </div>
+
+  <!-- 본문 -->
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="category-buttons">
+        <button>중앙</button>
+        <button>가격</button>
+        <button>치안</button>
+        <button>거리</button>
+      </div>
+
+      <!-- 예시 카드 1 -->
+      <div class="card">
+        <h3>매물 1: 서울특별시 용산구 한남동 732-171</h3>
+        <p>월세 60만원 / 보증금 500만원</p>
+        <p>치안, 정숙, 통학 거리, 보증금, 월세</p>
+      </div>
+      <!-- 예시 카드 2 -->
+      <div class="card">
+        <h3>매물 2: 신림역 지역 오픈형 원룸</h3>
+        <p>월세 40만원 / 보증금 300만원</p>
+        <p>정숙, 위치, 통학 거리</p>
+      </div>
+    </div>
+
+    <!-- 상세 정보 -->
+    <div class="details">
+      <h2>매물 1</h2>
+      <div class="price">월세 60만원, 보증금 500만원</div>
+
+      <button class="btn-top">공인중개사 정보 더보기</button>
+
+      <div class="info">
+        <strong>매물 주소:</strong> 서울특별시 용산구 한남동 732-171
+      </div>
+
+      <div class="image-box">
+        <img src="house1.png" alt="매물 사진" class="house-img">
+      </div>
+
+      <div class="map" id="map"></div>
+
+<!-- 지도 JS 추가 -->
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=306c594bc70125ed78c30c9e79de0019"></script>
+<script>
+  const mapContainer = document.getElementById('map');
+  const mapOption = {
+    center: new kakao.maps.LatLng(37.5342, 126.999),
+    level: 3
+  };
+  const map = new kakao.maps.Map(mapContainer, mapOption);
+  const markerPosition = new kakao.maps.LatLng(37.5342, 126.999);
+  const marker = new kakao.maps.Marker({
+    position: markerPosition
+  });
+  marker.setMap(map);
+</script>

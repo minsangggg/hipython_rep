@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>반경 검색</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      margin-left: 40px;
+      border-bottom: 1px solid #eee;
+      position: fixed;
+      background-color: #fff;
+      top: 0;
+      left: 0;
+    }
+
+    .header img {
+      width: 100px;
+      margin-right: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #333;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      padding-top: 150px;
+      padding-bottom: 50px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .input-group input {
+      flex-grow: 1;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .input-group button {
+      padding: 12px 20px;
+      background-color: #fde4de;
+      border: none;
+      border-radius: 5px;
+      color: #000;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .input-group button:hover {
+      background-color: #f8d2cc;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+      font-size: 14px;
+      color: #777;
+    }
+
+    #radiusRange {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    #map {
+      width: 100%;
+      height: 400px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .buttons button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-back {
+      background-color: #d9d9d9;
+      color: black;
+    }
+
+    .btn-back:hover {
+      background-color: #c0c0c0;
+    }
+
+    .btn-done {
+      background-color: #fde4de;
+      color: black;
+    }
+
+    .btn-done:hover {
+      background-color: #f8d2cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="bangu.png" alt="방구 캐릭터" />
+    <h1>방구</h1>
+  </div>
+
+  <div class="container">
+    <h2>기준 주소 입력</h2>
+    <div class="input-group">
+      <input type="text" id="addressInput" placeholder="도로명, 지번, 건물명 검색" />
+      <button id="searchBtn">검색</button>
+    </div>
+
+    <h2>반경 선택</h2>
+    <div class="slider-labels">
+      <span>최소</span>
+      <span>1km</span>
+      <span>3km</span>
+      <span>5km</span>
+      <span>최대</span>
+    </div>
+    <input type="range" id="radiusRange" min="1000" max="10000" step="100" value="3000" />
+    <div style="text-align: right; font-weight: bold;" id="currentRadius">3km</div>
+
+    <div id="map"></div>
+
+    <div class="buttons">
+      <button class="btn-back" onclick="history.back()">이전</button>
+      <button class="btn-done" onclick="location.href='filter1.html'">완료</button>
+    </div>
+  </div>
+
+  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=306c594bc70125ed78c30c9e79de0019&libraries=services"></script>
+  <script>
+    let mapContainer = document.getElementById("map");
+    let mapOption = {
+      center: new kakao.maps.LatLng(37.566826, 126.9786567),
+      level: 5,
+    };
+    let map = new kakao.maps.Map(mapContainer, mapOption);
+    let geocoder = new kakao.maps.services.Geocoder();
+
+    let marker = null;
+    let circle = null;
+    let centerPos = null;
+
+    const radiusRange = document.getElementById("radiusRange");
+    const currentRadiusSpan = document.getElementById("currentRadius");
+
+    radiusRange.addEventListener("input", function () {
+      const km = this.value / 1000;
+      currentRadiusSpan.textContent = km + "km";
+      if (centerPos) drawCircle(centerPos, this.value);
+    });
+
+    document.getElementById("searchBtn").addEventListener("click", function () {
+      const address = document.getElementById("addressInput").value.trim();
+      if (!address) return alert("주소를 입력해주세요.");
+
+      geocoder.addressSearch(address, function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          centerPos = new kakao.maps.LatLng(result[0].y, result[0].x);
+          drawMarker(centerPos);
+          drawCircle(centerPos, radiusRange.value);
+          map.setCenter(centerPos);
+          map.setLevel(5);
+        } else {
+          alert("주소 검색 결과가 없습니다.");
+        }
+      });
+    });
+
+    function drawMarker(pos) {
+      if (marker) marker.setMap(null);
+      marker = new kakao.maps.Marker({ position: pos, map: map });
+    }
+
+    function drawCircle(center, radius) {
+      if (circle) circle.setMap(null);
+      circle = new kakao.maps.Circle({
+        center: center,
+        radius: parseInt(radius),
+        strokeWeight: 2,
+        strokeColor: "#FF00FF",
+        strokeOpacity: 0.8,
+        strokeStyle: "solid",
+        fillColor: "#FF00FF",
+        fillOpacity: 0.3,
+      });
+      circle.setMap(map);
+    }
+  </script>
+</body>
+</html>

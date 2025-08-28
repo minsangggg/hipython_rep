@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>조건 설정</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      margin-left: 40px;
+      border-bottom: 1px solid #eee;
+      position: fixed;
+      background-color: #fff;
+      top: 0;
+      left: 0;
+    }
+
+    .header img {
+      width: 100px;
+      margin-right: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #333;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      padding-top: 150px;
+      padding-bottom: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    h2 {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 5px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+      margin-bottom: 30px;
+      appearance: none;
+      background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"%3E%3Cpolyline points="20,50 70,100 120,50" stroke="%23000" stroke-width="15" fill="none" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E');
+      background-repeat: no-repeat;
+      background-position: right 10px top 50%;
+      background-size: 16px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .button-group button {
+      padding: 12px 20px;
+      background-color: #d9d9d9;
+      color: black;
+      border: none;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .button-group button:hover {
+      background-color: #c0c0c0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="bangu.png" alt="방구 로고" />
+    <h1>방구</h1>
+  </div>
+
+  <div class="container">
+    <!-- 보증금 -->
+    <h2>보증금 범위 선택</h2>
+    <div class="slider-labels">
+      <span>최소</span>
+      <span>5만</span>
+      <span>1억</span>
+      <span>1.5억</span>
+      <span>최대</span>
+    </div>
+    <input type="range" min="50000" max="150000000" step="50000" />
+
+    <!-- 월세 -->
+    <h2>월세 범위 선택</h2>
+    <div class="slider-labels">
+      <span>최소</span>
+      <span>50만</span>
+      <span>100만</span>
+      <span>150만</span>
+      <span>최대</span>
+    </div>
+    <input type="range" min="500000" max="1500000" step="50000" />
+
+    <!-- 평수 -->
+    <h2>평수 선택</h2>
+    <select>
+      <option disabled selected>평수를 선택하세요</option>
+      <option>10평 이하</option>
+      <option>10~20평</option>
+      <option>20~30평</option>
+      <option>30평 이상</option>
+    </select>
+
+    <!-- 방 개수 -->
+    <h2>방 개수 선택</h2>
+    <select>
+      <option disabled selected>방 개수를 선택하세요</option>
+      <option>1개</option>
+      <option>2개</option>
+      <option>3개</option>
+      <option>4개 이상</option>
+    </select>
+
+    <!-- 버튼들 -->
+    <div class="button-group">
+      <button onclick="history.back()">이전</button>
+      <button onclick="location.href='filter2.html'">상세필터</button>
+      <button>완료</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회원가입</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background-color: #fff;
+      margin-top: 50px;
+      padding-top: 50px;
+    }
+
+    .header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      margin-left: 40px;
+      border-bottom: 1px solid #eee;
+      position: fixed;
+      background-color: #fff;
+    }
+
+    .header img {
+      width: 100px;
+      margin-right: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #333;
+    }
+
+    .signup-form {
+      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-top: 50px;
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group select {
+      width: calc(100% - 20px);
+      padding: 12px 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-group select {
+      background-color: #fff;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2C114.7L154%2C247.7c-5.6%2C5.6-14.4%2C5.6-20%2C0L5%2C114.7C-1.7%2C107.4-1.7%2C95.6%2C5%2C88.4c6.8-6.8%2C17.6-6.8%2C24.4%2C0l124.6%2C124.6l124.6-124.6c6.8-6.8%2C17.6-6.8%2C24.4%2C0C293.7%2C95.6%2C293.7%2C107.4%2C287%2C114.7z%22%2F%3E%3C%2Fsvg%3E');
+      background-repeat: no-repeat;
+      background-position: right 10px top 50%;
+      background-size: 12px;
+    }
+
+    .btn-signup {
+      background-color: #fde4de;
+      color: #000;
+      font-weight: bold;
+      padding: 15px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .btn-signup:hover {
+      background-color: #f8d2cc;
+    }
+
+    .btn-back-outside {
+      margin-top: 20px;
+      background-color: #d9d9d9;
+      color: #000;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-back-outside:hover {
+      background-color: #c0c0c0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="bangu.png" alt="마스코트 캐릭터" />
+    <h1>방구</h1>
+  </div>
+  <div class="container">
+    <h2>회원가입</h2>
+    <div class="signup-form">
+      <form action="#" method="POST">
+        <div class="form-group">
+          <label for="id">아이디</label>
+          <input type="text" id="id" name="id" placeholder="아이디 입력" required />
+        </div>
+        <div class="form-group">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" name="password" placeholder="비밀번호 입력" required />
+        </div>
+        <div class="form-group">
+          <label for="nickname">닉네임</label>
+          <input type="text" id="nickname" name="nickname" placeholder="닉네임 입력" required />
+        </div>
+        <div class="form-group">
+          <label for="birth">생일</label>
+          <input type="text" id="birth" name="birth" placeholder="생일 입력" required />
+        </div>
+        <div class="form-group">
+          <label for="gender">성별</label>
+          <select id="gender" name="gender" required>
+            <option value="">성별 선택</option>
+            <option value="male">남성</option>
+            <option value="female">여성</option>
+            <option value="other">선택 안 함</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-signup">회원가입</button>
+      </form>
+    </div>
+
+    <!-- 🔻 폼 밖 이전 버튼 -->
+    <button type="button" class="btn-back-outside" onclick="history.back()">이전</button>
+  </div>
+</body>
+</html>

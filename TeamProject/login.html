@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로그인</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background-color: #fff;
+      margin-top: 50px;
+      padding-top: 50px;
+    }
+    .header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      margin-left: 40px;
+      border-bottom: 1px solid #eee;
+      position: fixed;
+      background-color: #fff;
+    }
+    .header img {
+      width: 100px;
+      margin-right: 20px;
+    }
+    .header h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #333;
+    }
+    .login-form {
+      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-top: 50px;
+    }
+    .container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 28px;
+    }
+    .login-form p {
+      text-align: center;
+      color: #777;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+      width: calc(100% - 20px);
+      padding: 12px 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      background-color: #fde4de;
+      color: #000;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .btn-login:hover {
+      background-color: #f8d2cc;
+    }
+
+    .btn-back-outside {
+      margin: 20px;
+      margin-left:0;
+      display: block;
+      background-color: #d9d9d9;
+      color: #000;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-back-outside:hover {
+      background-color: #c0c0c0;
+    }
+
+    .login-options {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .login-options a {
+      color: #888;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="bangu.png" alt="마스코트 캐릭터" />
+    <h1>방구</h1>
+  </div>
+  <div class="container">
+    <h2>로그인</h2>
+    <div class="login-form">
+      <p>다양한 방구 서비스 이용을 위해 로그인 해주세요</p>
+      <form action="#" method="POST">
+        <div class="form-group">
+          <label for="id">아이디</label>
+          <input type="text" id="id" name="id" placeholder="아이디 입력" required />
+        </div>
+        <div class="form-group">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" name="password" placeholder="비밀번호 입력" required />
+        </div>
+        <button type="submit" class="btn-login">로그인</button>
+      </form>
+      <div class="login-options">
+        <a href="#">아이디 찾기</a>
+        <a href="#">비밀번호 찾기</a>
+      </div>
+    </div>
+
+    <!-- 🔻 폼 밖 이전 버튼 -->
+    <button type="button" class="btn-back-outside" onclick="history.back()">이전</button>
+  </div>
+</body>
+</html>

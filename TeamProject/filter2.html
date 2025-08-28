@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>상세 조건 체크</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      margin-left: 40px;
+      border-bottom: 1px solid #eee;
+      position: fixed;
+      background-color: #fff;
+      top: 0;
+      left: 0;
+    }
+    .header img {
+      width: 100px;
+      margin-right: 20px;
+    }
+    .header h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #333;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      padding-top: 80px;
+      padding-bottom: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .filter-box {
+      width: 100%;
+      max-width: 400px;
+      background-color: #fff;
+      padding: 30px;
+    }
+    .filter-box h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    .checkbox-group {
+      margin-bottom: 20px;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      cursor: pointer;
+      font-size: 16px;
+      color: #555;
+    }
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 15px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .action-buttons button {
+      padding: 15px 40px;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .action-buttons .btn-prev {
+      background-color: #cccccc;
+      color: #000;
+    }
+    .action-buttons .btn-prev:hover {
+      background-color: #b0b0b0;
+    }
+    .action-buttons .btn-done {
+      background-color: #fde4de;
+      color: #000;
+    }
+    .action-buttons .btn-done:hover {
+      background-color: #f8d2cc;
+    }
+    @media (max-width: 768px) {
+      .header {
+        margin-left: 0;
+        justify-content: center;
+      }
+      .container {
+        padding-top: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="bangu.png" alt="마스코트 캐릭터" />
+    <h1>방구</h1>
+  </div>
+  <div class="container">
+    <div class="filter-box">
+      <h2>상세조건 체크</h2>
+      <form action="#" method="POST">
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" name="parking" value="yes" />
+            주차 가능
+          </label>
+          <label>
+            <input type="checkbox" name="management_fee" value="no" />
+            관리비 없음
+          </label>
+          <label>
+            <input type="checkbox" name="pet" value="yes" />
+            반려동물 가능
+          </label>
+          <label>
+            <input type="checkbox" name="basement" value="no" />
+            반지하
+          </label>
+          <label>
+            <input type="checkbox" name="washer" value="yes" />
+            세탁기
+          </label>
+          <label>
+            <input type="checkbox" name="dryer" value="yes" />
+            건조기
+          </label>
+          <label>
+            <input type="checkbox" name="air_conditioner" value="yes" />
+            에어컨
+          </label>
+          <label>
+            <input type="checkbox" name="gas_stove" value="yes" />
+            가스레인지
+          </label>
+          <label>
+            <input type="checkbox" name="induction" value="yes" />
+            인덕션
+          </label>
+          <label>
+            <input type="checkbox" name="elevator" value="yes" />
+            엘리베이터
+          </label>
+          <label>
+            <input type="checkbox" name="cctv" value="yes" />
+            CCTV 있음
+          </label>
+          <label>
+            <input type="checkbox" name="security_password" value="yes" />
+            공동현관 비밀번호 있음
+          </label>
+        </div>
+      </form>
+    </div>
+    <div class="action-buttons">
+      <button class="btn-prev" onclick="history.back()">이전</button>
+      <button onclick="location.href='search_result.html'">완료</button>
+    </div>
+  </div>
+</body>
+</html>

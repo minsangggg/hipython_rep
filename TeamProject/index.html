@@ -1,78 +1,53 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>방구 - 사회 초년생의 집 찾기</title>
-  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'SUIT', sans-serif;
-      background: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .landing-container {
-      text-align: center;
-      padding: 20px;
-    }
-
-    .landing-container img {
-      width: 120px;
-      margin: 20px 0;
-    }
-
-    .landing-container h1 {
-      font-size: 36px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .landing-container .subtitle {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 30px;
-    }
-
-    .landing-container .small-text {
-      font-size: 16px;
-      color: #999;
-    }
-
-    button {
-      padding: 14px 28px;
-      font-size: 16px;
-      background-color: #3a86ff;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #296de0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방구 - 사회 초년생들을 위한 원룸 구하기 서비스</title>
+    <!-- Tailwind CSS를 사용해 스타일을 간편하게 적용합니다. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 사용자 정의 폰트를 적용합니다. */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+    </style>
 </head>
-<body>
-  <div class="landing-container">
-   <img src="마스코트 캐릭터.png" alt="마스코트 캐릭터" style="width: 400px; height: auto;">
-    <h1>방구</h1>
-    <p class="subtitle">사회 초년생의 방구하기!</p>
-    <button onclick="location.href='region.html'">지금 시작하기</button>
-  </div>
+<body class="flex items-center justify-center min-h-screen bg-white">
+    <!-- 메인 컨테이너 -->
+    <div class="bg-white p-8 rounded-3xl text-center max-w-sm w-full mx-4">
+        <!-- 방구 캐릭터 이미지 -->
+        <div class="mb-6">
+            <!-- 사용자가 업로드한 이미지를 표시합니다. -->
+            <!-- 이 이미지는 로컬에 저장되어 있으므로 실제 웹 환경에서는 경로를 수정해야 합니다. -->
+            <img src="bangu.png" alt="방구 캐릭터" >
+        </div>
+
+        <!-- 제목 -->
+        <h1 class="text-5xl font-extrabold text-gray-800 mb-2">방구</h1>
+        <!-- 부제 -->
+        <p class="text-md text-gray-500 mb-8">
+            사회 초년생들을 위한 원룸 구하기 서비스
+        </p>
+
+                <!-- 버튼 섹션 -->
+        <div class="flex justify-center items-center space-x-4 mb-4">
+          <!-- 로그인 버튼 -->
+          <button class="flex-1 bg-[#fde4de] text-black py-3 px-6 rounded-full font-semibold transition-colors duration-200" onclick="location.href='login.html'">
+            로그인
+          </button>
+          <!-- 회원가입 버튼 -->
+          <button class="flex-1 bg-[#fde4de] text-black py-3 px-6 rounded-full font-semibold transition-colors duration-200" onclick="location.href='signup.html'">
+            회원가입
+          </button>
+        </div>
+
+        <!-- 게스트 버튼 -->
+        <button class="w-full bg-[#d9d9d9] text-black py-3 px-6 rounded-full font-semibold transition-colors duration-200" onclick="location.href='select_purpose.html'">
+          게스트로 이용
+        </button>
+
+    </div>
 </body>
 </html>
-
-
-

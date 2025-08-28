@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1차 필터</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin-left: 40px;
+            border-bottom: 1px solid #eee;
+            position: fixed;
+            background-color: #fff;
+            top: 0;
+            left: 0;
+        }
+        .header img {
+            width: 100px;
+            margin-right: 20px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            max-width: 1500px;
+            padding-top: 200px; /* 헤더 공간 확보 */
+            padding-bottom: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 100px;
+        }
+        .option-box {
+            width: 100%;
+            height: 100%;
+            max-width: 400px;
+            max-height: 500px;
+            background-color: #ffe8e8;
+            padding: 200px 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .option-box:hover {
+            /* transform: translateY(-5px); */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .option-box h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .option-box p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .header {
+                margin-left: 0;
+                justify-content: center;
+            }
+            .container {
+                flex-direction: column;
+                padding-top: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="bangu.png" alt="마스코트 캐릭터">
+        <h1>방구</h1>
+    </div>
+    <div class="container">
+        <div class="option-box" onclick="location.href='radius_search.html'">
+            <h2>근처가 좋아요</h2>
+            <p>선택 시 입력하신 주소를 기준으로 다양한 반경 선택을<br>통해 매물을 검색합니다</p>
+        </div>
+        <div class="option-box" onclick="location.href='radius_search.html'">
+            <h2>동네가 좋아요</h2>
+            <p>선택 시 입력하신 동네에 있는<br>매물을 검색합니다</p>
+        </div>
+    </div>
+</body>
+</html>
