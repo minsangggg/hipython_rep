@@ -129,13 +129,16 @@
 </head>
 <body>
   <div class="header">
+  <a href="index.html">
     <img src="bangu.png" alt="마스코트 캐릭터" />
-    <h1>방구</h1>
-  </div>
+  </a>
+  <h1>방구</h1>
+</div>
+
   <div class="container">
     <h2>회원가입</h2>
     <div class="signup-form">
-      <form action="#" method="POST">
+      <form id="signupForm">
         <div class="form-group">
           <label for="id">아이디</label>
           <input type="text" id="id" name="id" placeholder="아이디 입력" required />
@@ -148,10 +151,25 @@
           <label for="nickname">닉네임</label>
           <input type="text" id="nickname" name="nickname" placeholder="닉네임 입력" required />
         </div>
+        
+        <!-- flatpickr CSS & JS 불러오기 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                
         <div class="form-group">
           <label for="birth">생일</label>
-          <input type="text" id="birth" name="birth" placeholder="생일 입력" required />
+          <input type="date" id="birth" name="birth" required />
         </div>
+
+        <script>
+          flatpickr("#birth", {
+            dateFormat: "Y-m-d",   // DB에 맞는 형식 (YYYY-MM-DD)
+            maxDate: "today",      // 오늘 이전만 선택 가능
+            altInput: true,
+            altFormat: "Y년 m월 d일",  // 사용자에겐 한국식으로 예쁘게 표시
+          });
+        </script>
+
         <div class="form-group">
           <label for="gender">성별</label>
           <select id="gender" name="gender" required>
@@ -164,7 +182,27 @@
         <button type="submit" class="btn-signup">회원가입</button>
       </form>
     </div>
+    <script>
+      document.getElementById("signupForm").addEventListener("submit", async function(e) {
+        e.preventDefault();  // 원래대로 하면 새로고침되는데, 막음
 
+        const data = {
+          username: document.getElementById("id").value,
+          password: document.getElementById("password").value,
+          nickname: document.getElementById("nickname").value,
+          birth: document.getElementById("birth").value,
+          gender: document.getElementById("gender").value
+      };
+
+    let res = await fetch("http://localhost:8000/signup", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    });
+    let result = await res.json();
+  alert(result.message || result.error);
+});
+</script> 
     <!-- 🔻 폼 밖 이전 버튼 -->
     <button type="button" class="btn-back-outside" onclick="history.back()">이전</button>
   </div>

@@ -30,12 +30,13 @@
       height: calc(100vh - 80px);
     }
     .sidebar {
-      width: 40%;
+      width: 25%;
       background-color: #f9f9f9;
       padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 20px;
+      overflow-y: auto;
     }
     .category-buttons {
       display: flex;
@@ -55,6 +56,7 @@
       border-radius: 5px;
       padding: 16px;
       box-shadow: 0 0 5px rgba(0,0,0,0.05);
+      cursor: pointer;
     }
     .details {
       width: 60%;
@@ -71,29 +73,40 @@
       margin-bottom: 20px;
     }
     .image-box {
-  width: 100%;
-  height: 200px;
-  background-color: #f2f2f2;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.house-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-    .image-box span {
-      color: #888;
-    }
-    .info {
-      font-size: 14px;
+      position: relative;
+      width: 800px;
+      height: 500px;
+      background-color: #f2f2f2;
+      margin-top: 0px;
       margin-bottom: 20px;
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .map {
+    .house-img {
       width: 100%;
-      height: 200px;
+      height: 100%;
+      object-fit: contain;
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 50%;
+    }
+    .slider-btn.left { left: 10px; }
+    .slider-btn.right { right: 10px; }
+    .map {
+      width: 200%;
+      height: 400px;
     }
     .button-row {
       margin-top: 20px;
@@ -121,64 +134,120 @@
 <body>
   <!-- 헤더 -->
   <div class="header">
-    <img src="bangu.png" alt="로고">
-    <h1>방구</h1>
+    <a href="index.html">
+      <img src="bangu.png" alt="마스코트 캐릭터" />
+    </a>
+    
   </div>
 
   <!-- 본문 -->
   <div class="container">
     <!-- 사이드바 -->
-    <div class="sidebar">
+    <div class="sidebar" id="room-list">
       <div class="category-buttons">
         <button>중앙</button>
         <button>가격</button>
         <button>치안</button>
         <button>거리</button>
       </div>
-
-      <!-- 예시 카드 1 -->
-      <div class="card">
-        <h3>매물 1: 서울특별시 용산구 한남동 732-171</h3>
-        <p>월세 60만원 / 보증금 500만원</p>
-        <p>치안, 정숙, 통학 거리, 보증금, 월세</p>
-      </div>
-      <!-- 예시 카드 2 -->
-      <div class="card">
-        <h3>매물 2: 신림역 지역 오픈형 원룸</h3>
-        <p>월세 40만원 / 보증금 300만원</p>
-        <p>정숙, 위치, 통학 거리</p>
-      </div>
     </div>
 
     <!-- 상세 정보 -->
     <div class="details">
-      <h2>매물 1</h2>
-      <div class="price">월세 60만원, 보증금 500만원</div>
+      <h2 id="room-title">매물 상세</h2>
+      <div class="price" id="room-price"></div>
+      <div class="info"><strong>주소:</strong> <span id="room-address"></span></div>
+      <button onclick="location.href='agent_detail.html'" class="btn gray">공인중개사 정보 더보기</button>
 
-      <button class="btn-top">공인중개사 정보 더보기</button>
+      <!-- 이미지 박스 (슬라이드) -->
+      <div class="image-box" id="image-gallery"></div>
+        <button class="slider-btn left" onclick="prevImage()">&#x25C0;</button>
+        <img id="room-image" class="house-img" src="" alt="매물 사진">
+        <button class="slider-btn right" onclick="nextImage()">&#x25B6;</button>
+      
 
-      <div class="info">
-        <strong>매물 주소:</strong> 서울특별시 용산구 한남동 732-171
-      </div>
-
-      <div class="image-box">
-        <img src="house1.png" alt="매물 사진" class="house-img">
-      </div>
-
+      <!-- 지도 -->
       <div class="map" id="map"></div>
+    </div>
+  </div>
 
-<!-- 지도 JS 추가 -->
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=306c594bc70125ed78c30c9e79de0019"></script>
-<script>
-  const mapContainer = document.getElementById('map');
-  const mapOption = {
-    center: new kakao.maps.LatLng(37.5342, 126.999),
-    level: 3
-  };
-  const map = new kakao.maps.Map(mapContainer, mapOption);
-  const markerPosition = new kakao.maps.LatLng(37.5342, 126.999);
-  const marker = new kakao.maps.Marker({
-    position: markerPosition
-  });
-  marker.setMap(map);
-</script>
+  <!-- Kakao 지도 SDK -->
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=306c594bc70125ed78c30c9e79de0019&autoload=false&libraries=services"></script>
+  <script>
+    let map;
+    let images = [];
+    let currentIndex = 0;
+
+    async function loadRoom() {
+      const params = new URLSearchParams(window.location.search);
+      const roomId = params.get("id");
+
+      // FastAPI에서 매물 상세정보 요청
+      const res = await fetch(`http://127.0.0.1:8000/room/${roomId}`);
+      const data = await res.json();
+      const room = data.room;
+      images = data.images.map(i => i.image_path);  // 여러 장 이미지 배열
+
+      // 상세 정보 반영
+      document.getElementById("room-title").textContent = `매물 ${room.id}`;
+      document.getElementById("room-price").textContent =
+        `${room.transaction_type} / 보증금 ${room.deposit} / 월세 ${room.rent} / 관리비 ${room.management_fee}`;
+      document.getElementById("room-address").textContent = room.property_address;
+
+      // 첫 이미지 세팅
+      if (images.length > 0) {
+        document.getElementById("room-image").src = images[0];
+      }
+
+      // 지도 로드
+      kakao.maps.load(function() {
+        const mapContainer = document.getElementById('map');
+        const mapOption = {
+          center: new kakao.maps.LatLng(room.latitude, room.longitude),
+          level: 3
+        };
+        map = new kakao.maps.Map(mapContainer, mapOption);
+
+        const markerPosition = new kakao.maps.LatLng(room.latitude, room.longitude);
+        const marker = new kakao.maps.Marker({ position: markerPosition });
+        marker.setMap(map);
+      });
+    }
+     
+    function nextImage() {
+      if (images.length === 0) return;
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById("room-image").src = images[currentIndex];
+    }
+
+    function prevImage() {
+      if (images.length === 0) return;
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      document.getElementById("room-image").src = images[currentIndex];
+    }
+
+    loadRoom();
+  </script>
+
+  <script>
+    async function loadSidebarRooms() {
+      const response = await fetch("http://127.0.0.1:8000/rooms");
+      const rooms = await response.json();
+      const list = document.getElementById("room-list");
+
+      rooms.forEach((room, idx) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.onclick = () => location.href = `property_detail.html?id=${room.id}`;
+        card.innerHTML = `
+          <h3>매물 ${idx+1}: ${room.property_address}</h3>
+          <p>매물정보: ${room.transaction_type} / 보증금 ${room.deposit || 0} / 월세 ${room.rent || 0} / 관리비 ${room.management_fee || 0}</p>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    loadSidebarRooms();
+  </script>
+</body>
+</html>

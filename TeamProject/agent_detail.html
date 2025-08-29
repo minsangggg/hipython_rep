@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>방구 - 공인중개사 정보</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+    .main-container {
+    display: flex;
+    justify-content: center; /* 화면 가로 중앙 */
+    align-items: flex-start;
+    padding: 40px 20px;
+    gap: 40px;
+    }
+    .sidebar {
+      width: 250px;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+    .sidebar div {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+    .main {
+      flex: 1;
+      padding: 30px;
+      background-color: #fff;
+    }
+    .agent-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.agent-header {
+  display: flex;
+  align-items: center;
+}
+
+.agent-header .photo {
+  width: 80px;
+  height: 80px;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin-right: 20px;
+  text-align: center;
+  line-height: 80px;
+  color: #666;
+}
+
+.agent-header .info h2 {
+  margin: 0;
+}
+
+.agent-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.agent-meta .meta-box {
+  flex: 1;
+}
+
+.review-list {
+  margin-bottom: 30px;
+}
+
+.review-list ul {
+  padding-left: 20px;
+}
+
+.review-list li {
+  margin-bottom: 15px;
+}
+
+.review-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <div class="sidebar">
+      <h4>방구 공인중개사 사무소 매물 목록</h4>
+      <div>방구 공인중개사 사무소에서 올린 매물 1</div>
+      <div>방구 공인중개사 사무소에서 올린 매물 2</div>
+      <div>방구 공인중개사 사무소에서 올린 매물 3</div>
+      <button class="btn gray">이전</button>
+    </div>
+    <div class="main">
+      <div class="agent-detail">
+        <div class="photo">사진</div>
+        <div class="info">
+          <h2>방구 공인중개사 사무소</h2>
+          <p>매물 33</p>
+        </div>
+      </div>
+      <div>
+        <p><strong>응답률</strong> 94% <span class="tag">빠른 응답</span></p>
+        <p><strong>응답시간</strong> 1시간 이내 <span class="tag">매우 빠름</span></p>
+      </div>
+      <div class="stars">전체 만족도 ⭐⭐⭐⭐☆</div>
+
+      <div class="review">
+        <p><strong>리뷰</strong></p>
+        <ul>
+          <li>
+            <b>2025.06.23</b> 기준: ⭐⭐⭐⭐⭐<br />
+            친절하고 빠르게 연락을 주셨어요. 매물도 기대 이상이었고 설명도 꼼꼼했습니다.
+          </li>
+          <li>
+            <b>2025.04.13</b> 기준: ⭐⭐⭐⭐☆<br />
+            전체적으로 만족하지만 약간의 응답 지연이 있었어요.
+          </li>
+          <li>
+            <b>2025.02.04</b> 기준: ⭐⭐⭐⭐⭐<br />
+            문의했는데 바로 확인해주셨고 믿음이 갔어요.
+          </li>
+        </ul>
+      </div>
+
+      <button class="btn gray">공인중개사 전체 리뷰 보기</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -140,9 +140,12 @@
 </head>
 <body>
   <div class="header">
-    <img src="bangu.png" alt="방구 캐릭터" />
-    <h1>방구</h1>
-  </div>
+  <a href="index.html">
+    <img src="bangu.png" alt="마스코트 캐릭터" />
+  </a>
+  
+</div>
+
 
   <div class="container">
     <h2>기준 주소 입력</h2>
@@ -154,9 +157,9 @@
     <h2>반경 선택</h2>
     <div class="slider-labels">
       <span>최소</span>
-      <span>1km</span>
       <span>3km</span>
       <span>5km</span>
+      <span>8km</span>
       <span>최대</span>
     </div>
     <input type="range" id="radiusRange" min="1000" max="10000" step="100" value="3000" />
@@ -170,7 +173,7 @@
     </div>
   </div>
 
-  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=306c594bc70125ed78c30c9e79de0019&libraries=services"></script>
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=306c594bc70125ed78c30c9e79de0019&libraries=services"></script>
   <script>
     let mapContainer = document.getElementById("map");
     let mapOption = {

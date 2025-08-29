@@ -14,7 +14,6 @@
       align-items: center;
       min-height: 100vh;
     }
-
     .header {
       width: 100%;
       display: flex;
@@ -27,18 +26,15 @@
       top: 0;
       left: 0;
     }
-
     .header img {
       width: 100px;
       margin-right: 20px;
     }
-
     .header h1 {
       font-size: 24px;
       margin: 0;
       color: #333;
     }
-
     .container {
       width: 100%;
       max-width: 600px;
@@ -47,13 +43,15 @@
       padding-left: 20px;
       padding-right: 20px;
     }
-
     h2 {
       font-size: 16px;
       font-weight: bold;
       margin-bottom: 10px;
     }
-
+    .slider-container {
+      position: relative;
+      margin-bottom: 30px;
+    }
     .slider-labels {
       display: flex;
       justify-content: space-between;
@@ -61,12 +59,18 @@
       color: #777;
       margin-bottom: 5px;
     }
-
     input[type="range"] {
       width: 100%;
-      margin-bottom: 30px;
     }
-
+    .slider-value {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #000;
+      font-weight: bold;
+    }
     select {
       width: 100%;
       padding: 12px;
@@ -81,13 +85,11 @@
       background-position: right 10px top 50%;
       background-size: 16px;
     }
-
     .button-group {
       display: flex;
       justify-content: space-between;
       margin-top: 30px;
     }
-
     .button-group button {
       padding: 12px 20px;
       background-color: #d9d9d9;
@@ -98,7 +100,6 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
     .button-group button:hover {
       background-color: #c0c0c0;
     }
@@ -106,59 +107,92 @@
 </head>
 <body>
   <div class="header">
-    <img src="bangu.png" alt="방구 로고" />
-    <h1>방구</h1>
-  </div>
+  <a href="index.html">
+    <img src="bangu.png" alt="마스코트 캐릭터" />
+  </a>
+  
+</div>
 
   <div class="container">
-    <!-- 보증금 -->
     <h2>보증금 범위 선택</h2>
-    <div class="slider-labels">
-      <span>최소</span>
-      <span>5만</span>
-      <span>1억</span>
-      <span>1.5억</span>
-      <span>최대</span>
+    <div class="slider-container">
+      <div class="slider-labels">
+        <span>최소</span>
+        <span>5000만</span>
+        <span>1억</span>
+        <span>1.5억</span>
+        <span>최대</span>
+      </div>
+      <input type="range" id="depositRange" min="0" max="200000000" step="1000000" value="0" />
+      <div class="slider-value" id="depositValue">0원</div>
     </div>
-    <input type="range" min="50000" max="150000000" step="50000" />
-
-    <!-- 월세 -->
     <h2>월세 범위 선택</h2>
-    <div class="slider-labels">
-      <span>최소</span>
-      <span>50만</span>
-      <span>100만</span>
-      <span>150만</span>
-      <span>최대</span>
+    <div class="slider-container">
+      <div class="slider-labels">
+        <span>최소</span>
+        <span>50만</span>
+        <span>100만</span>
+        <span>150만</span>
+        <span>최대</span>
+      </div>
+      <input type="range" id="rentRange" min="0" max="2000000" step="50000" value="0" />
+      <div class="slider-value" id="rentValue">0원</div>
     </div>
-    <input type="range" min="500000" max="1500000" step="50000" />
-
-    <!-- 평수 -->
     <h2>평수 선택</h2>
     <select>
       <option disabled selected>평수를 선택하세요</option>
+      <option>상관없음</option>
       <option>10평 이하</option>
       <option>10~20평</option>
       <option>20~30평</option>
       <option>30평 이상</option>
     </select>
-
-    <!-- 방 개수 -->
     <h2>방 개수 선택</h2>
     <select>
       <option disabled selected>방 개수를 선택하세요</option>
+      <option>상관없음</option>
       <option>1개</option>
       <option>2개</option>
       <option>3개</option>
       <option>4개 이상</option>
     </select>
-
-    <!-- 버튼들 -->
     <div class="button-group">
       <button onclick="history.back()">이전</button>
       <button onclick="location.href='filter2.html'">상세필터</button>
-      <button>완료</button>
+      <button onclick="location.href='search_result.html'">완료</button>
     </div>
   </div>
+  <script>
+    const depositRange = document.getElementById('depositRange');
+    const depositValue = document.getElementById('depositValue');
+    const rentRange = document.getElementById('rentRange');
+    const rentValue = document.getElementById('rentValue');
+
+    function formatCurrency(value) {
+        if (value >= 100000000) {
+            const billion = Math.floor(value / 100000000);
+            const million = (value % 100000000) / 10000;
+            if (million > 0) {
+                return `${billion}억 ${million}만`;
+            } else {
+                return `${billion}억`;
+            }
+        }
+        if (value >= 10000) {
+            return (value / 10000).toLocaleString('ko-KR') + '만';
+        }
+        return value.toLocaleString('ko-KR');
+    }
+
+    depositRange.addEventListener('input', function() {
+        depositValue.textContent = formatCurrency(this.value) + '원';
+    });
+    rentRange.addEventListener('input', function() {
+        rentValue.textContent = formatCurrency(this.value) + '원';
+    });
+
+    depositRange.dispatchEvent(new Event('input'));
+    rentRange.dispatchEvent(new Event('input'));
+</script>
 </body>
 </html>

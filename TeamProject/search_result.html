@@ -1,192 +1,151 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>검색 결과</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f6f6f6;
     }
 
-    .header {
+    /* 상단 가로 헤더 */
+    .topbar {
       display: flex;
       align-items: center;
-      padding: 16px 40px;
+      justify-content: space-between;
+      padding: 20px 40px;
       background-color: white;
       border-bottom: 1px solid #ddd;
     }
-
-    .header img {
-      width: 50px;
-      margin-right: 10px;
-    }
-
-    .header h1 {
-      font-size: 20px;
-      margin: 0;
-    }
-
-    .content {
+    .topbar .logo {
       display: flex;
-      height: calc(100vh - 80px);
-    }
-
-    .sidebar {
-      width: 25%;
-      background-color: #f9f9f9;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .category-buttons {
-      display: flex;
+      align-items: center;
       gap: 10px;
+      text-decoration: none;
     }
-
-    .category-buttons button {
-      flex: 1;
-      padding: 10px;
+    .topbar img {
+      width: 80px;
+    }
+    .topbar span {
+      font-size: 20px;
+      font-weight: bold;
+      color: black;
+    }
+    .topbar .nav-buttons button {
+      margin-left: 10px;
+      padding: 8px 15px;
       font-weight: bold;
       background-color: #fde4de;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
+    }
+    .topbar .nav-buttons button:hover {
+      background-color: #f5c7bd;
     }
 
+    .container {
+      display: flex;
+      height: calc(100vh - 60px); /* 헤더 높이 뺀 나머지 */
+    }
+    .sidebar {
+      width: 25%;
+      border-right: 1px solid #ccc;
+      overflow-y: auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
     .card {
-      background-color: white;
+      background: #fff;
+      border: 1px solid #ddd;
       border-radius: 5px;
-      padding: 30px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
-    }
-
-    .card h3 {
-      font-size: 14px;
-      margin: 0 0 10px;
-    }
-
-    .card p {
-      font-size: 12px;
-      color: #444;
-      margin: 4px 0;
-    }
-
-    #map {
-      width: 75%;
-      height: 100%;
-    }
-
-    .footer {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-    }
-
-    .footer button {
-      padding: 10px 20px;
-      background-color: #dcdcdc;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
+      padding: 15px;
+      margin-bottom: 15px;
       cursor: pointer;
     }
-
-    .footer button:hover {
-      background-color: #bbb;
+    .card img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .map {
+      width: 75%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
-
-  <!-- 헤더 -->
-  <div class="header">
-    <img src="bangu.png" alt="방구 로고" />
-    <h1>방구</h1>
+  <!-- 가로 상단 헤더 -->
+  <div class="topbar">
+    <a href="index.html" class="logo">
+      <img src="bangu.png" alt="마스코트 캐릭터" />
+      
+    </a>
+    <div class="nav-buttons">
+      <button>종합</button>
+      <button>가격</button>
+      <button>치안</button>
+      <button>거리</button>
+    </div>
   </div>
 
-  <!-- 본문 -->
-  <div class="content">
-    
-    <!-- 좌측: 필터 + 카드 -->
-    <div class="sidebar">
-      <div class="category-buttons">
-        <button>종합</button>
-        <button>가격</button>
-        <button>치안</button>
-        <button>거리</button>
-      </div>
-
-      <!-- 예시 카드 -->
-      <div class="card"  onclick="location.href='property_detail.html'" style="cursor:pointer;">
-        <h3>매물 1: 서울특별시 용산구 한남동 732-171</h3>
-        <p>매물정보: 월세 60만원 / 보증금 500만원</p>
-        <p>범주: 치안, 정숙, 통학 거리, 보증금, 월세</p>
-      </div>
-
-      <div class="card">
-        <h3>매물 2: 신림역 지역 오픈형 원룸</h3>
-        <p>매물정보: 월세 40만원 / 보증금 300만원</p>
-        <p>범주: 정숙, 위치, 정원, 통학 거리, 보증금, 월세</p>
-      </div>
-
-      <div class="card">
-        <h3>매물 3: 성신여대 지역 3층 오피스텔</h3>
-        <p>매물정보: 월세 55만원 / 보증금 1000만원</p>
-        <p>범주: 정숙, 위치, 정원, 통학 거리, 보증금, 월세</p>
-      </div>
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar" id="room-list">
+      <!-- JS에서 카드가 추가됨 -->
     </div>
 
-    <!-- 우측: 지도 -->
-    <div id="map"></div>
+    <!-- 지도 -->
+    <div class="map" id="map"></div>
   </div>
 
-  <!-- 하단 이전 버튼 -->
-  <div class="footer">
-    <button onclick="history.back()">이전</button>
-  </div>
-
-  <!-- 카카오맵 스크립트 -->
-  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=306c594bc70125ed78c30c9e79de0019"></script>
+  <!-- Kakao 지도 SDK -->
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=306c594bc70125ed78c30c9e79de0019&autoload=false&libraries=services"></script>
   <script>
-    const mapContainer = document.getElementById('map');
-    const mapOption = {
-      center: new kakao.maps.LatLng(37.556, 126.972),
-      level: 4
-    };
-    const map = new kakao.maps.Map(mapContainer, mapOption);
+    let map;
 
-    const positions = [
-      {
-        title: '서울특별시 용산구 한남동 732-171',
-        latlng: new kakao.maps.LatLng(37.5342, 126.999)
-      },
-      {
-        title: '신림역 매물',
-        latlng: new kakao.maps.LatLng(37.5342, 126.999)
-      },
-      {
-        title: '성신여대 매물',
-        latlng: new kakao.maps.LatLng(37.592, 127.017)
-      }
-    ];
-
-    positions.forEach(pos => {
-      new kakao.maps.Marker({
-        map: map,
-        position: pos.latlng,
-        title: pos.title
+    function initMap() {
+      kakao.maps.load(function() {
+        const mapContainer = document.getElementById('map');
+        const mapOption = {
+          center: new kakao.maps.LatLng(37.5665, 126.9780),
+          level: 6
+        };
+        map = new kakao.maps.Map(mapContainer, mapOption);
       });
-    });
+    }
+
+    async function loadRooms() {
+      const response = await fetch("http://127.0.0.1:8000/rooms");
+      const rooms = await response.json();
+
+      const list = document.getElementById("room-list");
+
+      rooms.forEach((room, idx) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.onclick = () => location.href = `property_detail.html?id=${room.id}`;
+
+        card.innerHTML = `
+          <h3>매물 ${idx+1}: ${room.property_address}</h3>
+          <p>매물정보: ${room.transaction_type} / 보증금 ${room.deposit || 0} / 월세 ${room.rent || 0} / 관리비 ${room.management_fee || 0}</p>
+        `;
+        list.appendChild(card);
+
+        if (room.latitude && room.longitude) {
+          kakao.maps.load(function() {
+            const pos = new kakao.maps.LatLng(room.latitude, room.longitude);
+            const marker = new kakao.maps.Marker({ position: pos });
+            marker.setMap(map);
+          });
+        }
+      });
+    }
+
+    initMap();
+    loadRooms();
   </script>
 </body>
 </html>

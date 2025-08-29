@@ -74,7 +74,6 @@
       border-radius: 5px;
       font-size: 16px;
     }
-
     .btn-login {
       width: 100%;
       padding: 15px;
@@ -88,14 +87,12 @@
       font-weight: bold;
       margin-top: 20px;
     }
-
     .btn-login:hover {
       background-color: #f8d2cc;
     }
-
     .btn-back-outside {
       margin: 20px;
-      margin-left:0;
+      margin-left: 0;
       display: block;
       background-color: #d9d9d9;
       color: #000;
@@ -107,18 +104,15 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
     .btn-back-outside:hover {
       background-color: #c0c0c0;
     }
-
     .login-options {
       display: flex;
       justify-content: space-between;
       margin-top: 15px;
       font-size: 14px;
     }
-
     .login-options a {
       color: #888;
       text-decoration: none;
@@ -127,14 +121,17 @@
 </head>
 <body>
   <div class="header">
+  <a href="index.html">
     <img src="bangu.png" alt="마스코트 캐릭터" />
-    <h1>방구</h1>
-  </div>
+  </a>
+  <h1>방구</h1>
+</div>
   <div class="container">
     <h2>로그인</h2>
     <div class="login-form">
       <p>다양한 방구 서비스 이용을 위해 로그인 해주세요</p>
-      <form action="#" method="POST">
+      <!-- ✅ action, method 제거 -->
+      <form id="loginForm" ">
         <div class="form-group">
           <label for="id">아이디</label>
           <input type="text" id="id" name="id" placeholder="아이디 입력" required />
@@ -145,14 +142,45 @@
         </div>
         <button type="submit" class="btn-login">로그인</button>
       </form>
-      <div class="login-options">
-        <a href="#">아이디 찾기</a>
-        <a href="#">비밀번호 찾기</a>
-      </div>
     </div>
 
-    <!-- 🔻 폼 밖 이전 버튼 -->
-    <button type="button" class="btn-back-outside" onclick="history.back()">이전</button>
+    <div class="login-options">
+      <a href="#">아이디 찾기</a>
+      <a href="#">비밀번호 찾기</a>
+    </div>
   </div>
+
+  <!-- 🔻 폼 밖 이전 버튼 -->
+  <button type="button" class="btn-back-outside" onclick="history.back()">이전</button>
+
+  <!-- ✅ 로그인 처리 스크립트 -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const data = {
+        username: document.getElementById("id").value,
+        password: document.getElementById("password").value
+      };
+
+      let res = await fetch("http://localhost:8000/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+      });
+
+      let result = await res.json();
+      console.log("서버 응답:", result);
+
+      if (result.message) {
+        alert(result.message);
+        window.location.href = "select_purpose.html";  // ✅ 성공 시 이동
+      } else {
+        alert(result.error);
+      }
+    });
+  });
+  </script>
 </body>
 </html>
