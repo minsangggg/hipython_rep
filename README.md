@@ -46,7 +46,7 @@
 - **성능 최적화**: 하이퍼파라미터 튜닝(GridSearchCV, 교차검증)  
 - **데이터 파이프라인**: 크롤링 → DB 적재(MariaDB) → ElasticSearch 검색 → 대시보드 연결  
 - **시각화 & 서비스화**: Matplotlib, Seaborn, Plotly, Streamlit, HTML/CSS/JS 기반 웹 UI  
-- **SQL/DB 관리**: WorkBench, MariaDB를 통한 데이터 질의와 관리  
+- **SQL/DB 관리**: WorkBench, MariaDB를 통한 데이터 처리와 관리  
 - **검색 & 분석**: ElasticSearch를 통한 데이터 색인 및 텍스트 분석  
 
 ---
