@@ -39,7 +39,7 @@
 
 ---
 
-## 🦾 데이터 분석 및 머신러닝을 위한 핵심 역량
+## 데이터 분석 및 머신러닝을 위한 핵심 역량
 
 - **데이터 전처리**: 결측치/이상치 처리, 인코딩, 타입 변환  
 - **모델링 & 평가**: Logistic Regression, DecisionTree, RandomForest, XGBoost, LightGBM, Gradient Boosting  
